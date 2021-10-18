@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Spring boot with Mybatis</title>
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+	<!-- Navigation-->
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Product section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6">
+					<img class="card-img-top mb-5 mb-md-0" th:src="${product.photo}"
+						th:alt="${product.productName}" />
+				</div>
+				<div class="col-md-6">
+					<div class="small mb-1">
+						Id: <span th:text="${product.productId}"></span>
+					</div>
+					<h1 class="display-5 fw-bolder" th:text="${product.productName}"></h1>
+					<div class="fs-5 mb-5">
+						$<span th:text="${product.price}"></span>
+					</div>
+					<p class="lead" th:text="${product.description}"></p>
+					<div class="d-flex" th:if="${session.userId != null}">
+						<form th:action="@{/cart/{id}(id=${product.productId})}"
+							method="POST" th:if="${product.stock > 0}">
+							<input type="number" id="inputQuantity" name="quantity"
+								th:value="1" th:min="1" th:max="${product.stock}"
+								class="form-control text-center me-3" style="max-width: 3rem">
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit">
+								<i class="fas fa-shopping-cart"></i>Add to cart
+							</button>
+						</form>
+						<h3 th:unless="${product.stock > 0}">Out of stock!</h3>
+						<div th:if="${session.role} == 'admin'">
+						<h5>
+							<a th:href="@{/products/update/{id}(id=${product.productId})}"
+								class="btn btn-outline-dark" role="button"><i
+								class="far fa-edit"></i> Update</a>
+						</h5>
+						<p>
+						<h5>
+							<a
+								th:href="@{/products/deleteById/{id}(id=${product.productId})}"
+								onclick="return confirm('Are you sure?')"
+								class="btn btn-outline-dark" role="button"><i
+								class="fas fa-user-minus"></i> Delete</a>
+						</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- comment section-->
+	<section class="py-5 bg-light">
+		<div class="container px-4 px-lg-5 mt-5">
+			<h2 class="fw-bolder mb-4">Comment</h2>
+			<p th:if="${comments == null}">No comment.</p>
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div class="col mb-5" th:each="comment: ${comments}">
+					<div class="card h-100">
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- User name-->
+								<h5 class="fw-bolder" th:text="${comment.userName}"></h5>
+								<!-- User comment-->
+								<p th:text="${comment.userComment}"></p>
+								<!-- Product actions-->
+								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent"
+									th:if="${session.userName == comment.userName || session.role == 'admin'}">
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto"
+											th:href="@{/products/deleteComment/{id}(id=${comment.commentId})}">Delete</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="container px-4 px-lg-5 mt-5" th:if="${showComment}==true">
+			<form th:action="@{/products/addComment}" method="POST">
+				<div class="form-group">
+					<input type="hidden" name="productId"
+						th:value="${product.productId}"> <label for="comment">Your
+						comment:</label>
+					<textarea id="comment" name="userComment" rows="4" cols="50"
+						class="form-control"></textarea>
+				</div>
+				<br> <input type="submit" class="btn btn-primary"
+					value="Submit" />
+			</form>
+		</div>
+	</section>
+	<!-- Footer-->
+	<div th:insert="common.html :: footer"></div>
+	<!-- Bootstrap core JS-->
+	<div th:insert="common.html :: script"></div>
+</body>
+</html>

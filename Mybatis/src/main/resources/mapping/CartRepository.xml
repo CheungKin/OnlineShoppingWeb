@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheung.mybatis.repository.CartRepository">
+     <select id="unique" resultType="Cart">
+       select * from cart where userId = #{userId} and productId = #{productId}
+     </select>
+     <select id="findByuserId" resultType="Cart">
+       select c.cartId as cartId, c.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost, p.stock as stock from products p, cart c where p.productId = c.productId and c.userId = #{userId}
+     </select>
+     <select id="findBycartId" resultType="Cart">
+       select c.cartId as cartId, c.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost from products p, cart c where p.productId = c.productId and c.cartId = #{cartId}
+     </select>
+     <insert id="save" parameterType="Cart">
+       insert into cart (userId, productId, quantity, cost) values (#{userId}, #{productId}, #{quantity}, #{cost})
+     </insert>
+     <update id="update" parameterType="Cart">
+       update cart set quantity = #{quantity}, cost = #{cost} where cartId = #{cartId}
+     </update> 
+     <delete id="deleteBycartId" parameterType="java.lang.Integer">
+      delete from cart where cartId = #{cartId}
+     </delete>
+     <select id="total" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+       select sum(cost) as total from cart where userId = #{userId}
+     </select>
+     <delete id="deleteByuserId" parameterType="java.lang.Integer">
+      delete from cart where userId = #{userId}
+     </delete>
+     <select id="count" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+       select count(cartId) as count from cart where userId = #{userId}
+     </select>
+</mapper>

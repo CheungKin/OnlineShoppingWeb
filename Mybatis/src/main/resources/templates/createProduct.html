@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create product</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<div th:insert="common.html :: source"></div>
+</head>
+<body>
+<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Create product</h1>
+			</div>
+		</div>
+	</header>
+	<div class="alert alert-danger alert-dismissible"
+		th:if="${err != null}">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong th:text="${err}"></strong>
+	</div>
+	<p th:text="${err}"></p>
+		<div class="card"
+			style="width: 500px; margin-left: auto; margin-right: auto">
+			<form th:action="@{/products/create}" method="POST"
+				th:object="${product}" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="productName">Product name:</label><br> <input
+						type="text" id="productName" name="productName"
+						th:field="*{productName}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="category">Category:</label><br> <select
+						id="category" name="category" class="form-control"
+						th:field="*{category}">
+						<option th:value="'cap'" th:text="cap"></option>
+						<option th:value="'clothes'" th:text="clothes"></option>
+						<option th:value="'trousers'" th:text="trousers"></option>
+						<option th:value="'shoes'" th:text="shoes"></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="stock">Stock:</label><br> <input type="number"
+						id="stock" name="stock" th:field="*{stock}" class="form-control"
+						required>
+				</div>
+				<div class="form-group">
+					<label for="price">Price:</label><br> <input type="number"
+						id="price" name="price" th:field="*{price}" class="form-control"
+						required>
+				</div>
+				<div class="form-group">
+					<label for="photo">Photo:</label><br> <input type="file"
+						id="photo" name="image" accept="image/png, image/jpeg, image/jpg"
+						class="form-control-file border">
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label><br>
+					<textarea id="description" name="description" th:field="*{description}" class="form-control"></textarea>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			</form>
+		</div>
+		
+			<div th:insert="common.html :: footer"></div>
+</body>
+</html>

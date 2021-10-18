@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Spring boot with Mybatis</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- Navigation-->
+<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Spring boot</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With Mybatis</p>
+			</div>
+		</div>
+	</header>
+	<!-- Section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div class="col mb-5" th:each="product : ${products}">
+					<div class="card h-100">
+						<!-- Product image-->
+						<a th:href="@{/products/{id}(id=${product.productId})}"> <img
+							class="card-img-top" th:src="${product.photo}"
+							th:alt="${product.productName}" width="450"
+					height="300" /></a>
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder" th:text="${product.productName}">Product
+									name</h5>
+								<!-- Product stock -->	
+								<h6>Stock : <span th:text="${product.stock}"></span></h6>
+								<!-- Product price-->
+								$<span th:text="${product.price}"></span>
+							</div>
+						</div>
+						<!-- Product actions
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="#">View
+									options</a>
+							</div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<div th:insert="common.html :: footer"></div>
+	<!-- Bootstrap core JS-->
+	<div th:insert="common.html :: script"></div>
+</body>
+</html>

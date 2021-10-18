@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheung.mybatis.repository.OrderRepository">
+     <select id="findAll" resultType="Order">
+       select * from orders
+     </select>
+     <select id="findByuserId" parameterType="java.lang.Integer" resultType="Order">
+       select * from orders where userId = #{userId}
+     </select>
+     <select id="findByBothId" parameterType="java.lang.Integer" resultType="Order">
+       select o.orderId as orderId, o.userId as userId, od.productId as productId from orders o, order_detail od where o.orderId = od.orderId and o.userId = #{userId} and od.productId = #{productId}
+     </select>
+     <insert id="save" parameterType="Order" useGeneratedKeys="true" keyProperty="orderId">
+       insert into orders (userId, total, delivery, status) values (#{userId}, #{total}, #{delivery}, #{status})
+     </insert>
+     <update id="update" parameterType="Order">
+      update orders set 
+      <trim suffixOverrides="," >
+      <if test="delivery != null">
+      delivery = #{delivery, jdbcType=DATA}, 
+      </if>
+      <if test="status != null">
+      status = #{status, jdbcType=VARCHAR},
+      </if>
+      </trim>
+      where orderId = #{orderId}
+     </update>
+     <delete id="delete" parameterType="java.lang.Integer">
+      delete from orders where orderId = #{orderId}
+     </delete>
+</mapper>

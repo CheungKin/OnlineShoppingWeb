@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheung.mybatis.repository.CommentRepository">
+     <select id="findByCommentId" resultType="Comment" parameterType="java.lang.Integer">
+         select * from comment where commentId = #{commentId}
+     </select>
+     <select id="findByProductId" parameterType="java.lang.Integer" resultType="Comment">
+         select c.commentId as commentId, u.userName as userName, c.productId as productId, c.userComment as userComment from comment c , users u where c.userId = u.userId and productId = #{productId}
+     </select>
+     <insert id="save" parameterType="Comment">
+         insert into comment(userId, productId, userComment) values (#{userId}, #{productId}, #{userComment})
+     </insert>
+     <delete id="deleteById" parameterType="java.lang.Integer">
+         delete from comment where commentId = #{commentId}
+     </delete>
+</mapper>

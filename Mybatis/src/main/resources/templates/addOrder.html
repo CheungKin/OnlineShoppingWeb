@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Order</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Add order(s)</h1>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<p>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>Product photo</th>
+					<th>Product name</th>
+					<th>quantity</th>
+					<th>cost</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cart: ${carts}">
+					<td><img th:src="@{${cart.photo}}" class="img-thumbnail"
+						width="200" height="200"></td>
+					<td th:text="${cart.productName}"></td>
+					<td th:text="${cart.quantity}"></td>
+					<td th:text="${cart.cost}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col text-center">
+				<h2>
+					Total: <span th:text="${total}"></span>
+				</h2>
+				<h2>Delivery Date:</h2>
+				<form th:action="@{/order/comfirm}" method="POST">
+					<input type="hidden" th:value="${total}" name="total">
+					<div class="form-group">
+						<input id="datefield" type="date" class="text-center"
+							style="max-width: 20rem" name="delivery" min="1899-01-01">
+					</div>
+					<input type="submit" class="btn btn-outline-secondary"
+						value="Comfirm">
+				</form>
+				<p>
+			</div>
+		</div>
+	</div>
+	<div th:insert="common.html :: footer"></div>
+	<script type="text/javascript">
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth() + 1;
+		var yyyy = today.getFullYear();
+		if (dd < 10) {
+			dd = '0' + dd
+		}
+		if (mm < 10) {
+			mm = '0' + mm
+		}
+		today = yyyy + '-' + mm + '-' + dd;
+		document.getElementById("datefield").setAttribute("min", today);
+	</script>
+</body>
+</html>

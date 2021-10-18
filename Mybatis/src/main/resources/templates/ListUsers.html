@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User List</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">User list</h1>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<p>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>name</th>
+					<th>password</th>
+					<th>address</th>
+					<th>role</th>
+					<th>update</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user: ${users}">
+					<td th:text="${user.userName}">user name</td>
+					<td th:text="${user.password}">password</td>
+					<td th:text="${user.address}">address</td>
+					<td th:text="${user.role}">role</td>
+					<td><a th:href="@{/users/update/{id}(id=${user.userId})}">
+							<i class="far fa-edit"></i>
+					</a></td>
+					<td><a th:href="@{/users/deleteById/{id}(id=${user.userId})}"
+						onclick="return confirm('Are you sure?')"> <i
+							class="fas fa-user-minus"></i>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:insert="common.html :: footer"></div>
+</body>
+</html>
