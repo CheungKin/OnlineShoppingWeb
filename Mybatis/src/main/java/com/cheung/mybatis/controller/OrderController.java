@@ -123,7 +123,7 @@ public class OrderController {
 		return "order";
 	}
 
-	@GetMapping("/{orderId}")
+	@GetMapping("/{orderId}/")
 	public String showDetail(@PathVariable("orderId") Integer orderId, ModelMap map) {
 		List<OrderDetail> orderDetails = orderDetailRepository.findByorderId(orderId);
 		map.addAttribute("orderDetails", orderDetails);

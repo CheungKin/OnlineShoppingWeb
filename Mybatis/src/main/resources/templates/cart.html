@@ -29,29 +29,29 @@
 				</thead>
 				<tbody>
 					<tr th:each="cart: ${carts}">
-						<td><a th:href="@{/products/{id}(id=${cart.productId})}"><img
-								th:src="@{${cart.photo}}" class="img-thumbnail" width="200"
-								height="200"></a></td>
+						<td>
+							<a th:href="@{/products/{id}(id=${cart.productId})}">
+								<img th:src="@{${cart.photo}}" class="img-thumbnail" width="200" height="200">
+							</a>
+						</td>
 						<td th:text="${cart.productName}"></td>
 						<td>
 							<div class="form-group">
-								<form th:action="@{/cart/update/}" th:object="${cart}"
-									method="POST" th:id="${cart.cartId}"
-									th:onclick="submitform([[${cart.cartId}]])">
+								<form th:action="@{/cart/update/}" th:object="${cart}" method="POST" th:id="${cart.cartId}" th:onclick="submitform([[${cart.cartId}]])">
 									<input type="hidden" th:value="${cart.cartId}" name="cartId">
-									<input type="hidden" th:value="${cart.productId}"
-										name="productId"> <input type="number"
-										class="form-control" th:value="${cart.quantity}"
-										name="quantity" th:min="1" th:max="${cart.stock}">
+									<input type="hidden" th:value="${cart.productId}" name="productId">
+									<input type="number" class="form-control" th:value="${cart.quantity}" name="quantity" th:min="1" th:max="${cart.stock}">
 								</form>
 							</div>
 						</td>
 						<td th:text="${cart.cost}"></td>
-						<td><a th:href="@{/order/add/{id}(id=${cart.cartId})}"
-							class="btn btn-outline-secondary" role="button">Buy it</a>
-						<td><a th:href="@{/cart/delete/{id}(id=${cart.cartId})}"
-							onclick="return confirm('Are you sure?')"><i
-								class="fas fa-user-minus"></i></a></td>
+						<td>
+							<a th:href="@{/order/add/{id}(id=${cart.cartId})}" class="btn btn-outline-secondary" role="button">Buy it</a>
+						<td>
+							<a th:href="@{/cart/delete/{id}(id=${cart.cartId})}" onclick="return confirm('Are you sure?')">
+								<i class="fas fa-user-minus"></i>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -61,8 +61,9 @@
 						<h2>
 							Total: <span th:text="${total}"></span>
 						</h2>
-						<a th:href="@{/order/add}" class="btn btn-outline-secondary"
-							role="button"><h2>Buy All</h2></a>
+						<a th:href="@{/order/add}" class="btn btn-outline-secondary" role="button">
+							<h2>Buy All</h2>
+						</a>
 					</div>
 				</div>
 			</div>

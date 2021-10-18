@@ -51,7 +51,7 @@ public class UserController {
 		} else {
 			user.setRole(role);
 			userRepository.save(user);
-			return "redirect:/products/";
+			return "redirect:/login";
 		}
 
 	}

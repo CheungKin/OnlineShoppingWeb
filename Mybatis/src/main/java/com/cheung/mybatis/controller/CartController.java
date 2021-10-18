@@ -43,6 +43,8 @@ public class CartController {
 		cart.setCost(amount * price);
 		if (result == null) {
 			cartRepository.save(cart);
+			int count = cartRepository.count(userId);
+			session.setAttribute("count", count);
 		} else {
 			cart.setCartId(result.getCartId());
 			cartRepository.update(cart);
@@ -53,8 +55,8 @@ public class CartController {
 	@GetMapping("/")
 	public String show(ModelMap map, HttpSession session) {
 		Integer userId = (Integer) session.getAttribute("userId");
-		List<Cart> carts = cartRepository.findByuserId(userId);		
-		if(carts.isEmpty()) {
+		List<Cart> carts = cartRepository.findByuserId(userId);
+		if (carts.isEmpty()) {
 			map.addAttribute("empty", "Your cart is empty");
 		} else {
 			map.addAttribute("carts", carts);
@@ -76,8 +78,11 @@ public class CartController {
 	}
 
 	@GetMapping("/delete/{cartId}")
-	public String delete(@PathVariable("cartId") int cartId) {
+	public String delete(@PathVariable("cartId") int cartId, HttpSession session) {
 		cartRepository.deleteBycartId(cartId);
+		Integer userId = (Integer) session.getAttribute("userId");
+		int count = cartRepository.count(userId);
+		session.setAttribute("count", count);
 		return "redirect:/cart/";
 	}
 }

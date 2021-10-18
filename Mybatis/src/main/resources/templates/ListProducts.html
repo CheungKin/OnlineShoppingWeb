@@ -4,18 +4,11 @@
 <title>Product List</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -24,28 +17,25 @@
 	</div>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
-			<li class="navbar-item" th:if="${session.userName}== null"><a
-				class="nav-link " th:href="@{/login}">Log In</a></li>
-			<li class="navbar-item" th:if="${session.userName}== null"><a
-				class="nav-link " th:href="@{/users/create}">Sign up</a></li>
-			<li class="navbar-item dropdown" th:if="${session.userName}!= null">
-				<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown">Hi, <span th:text="${session.userName}"></span></a>
+			<li class="navbar-item" th:if="${session.userName}== null"><a class="nav-link " th:href="@{/login}">Log In</a></li>
+			<li class="navbar-item" th:if="${session.userName}== null"><a class="nav-link " th:href="@{/users/create}">Sign up</a></li>
+			<li class="navbar-item dropdown" th:if="${session.userName}!= null"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+					Hi, <span th:text="${session.userName}"></span>
+				</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item"
-						th:href="@{/users/update/{id}(id=${session.userId})}">Update</a> <a
-						class="dropdown-item" th:href="@{/logout}">Log Out</a>
-				</div>
-			</li>
-			<li class="nav-item"><a class="nav-link"
-				th:href="@{/products/create}"><i class="fas fa-th"></i> Create
-					product</a></li>
-			<li class="nav-item"><a class="nav-link" th:href="@{/users/}"><i
-					class="fas fa-user"></i> List Users</a></li>
-			<li class="nav-itemn" th:if="${session.userName}!= null"><a
-				class="nav-link" th:href="@{/cart/}"><i class="fas fa-shopping-cart"></i> Cart (<span th:text="${count}"></span>)</a></li>
-			<li class="nav-itemn" th:if="${session.userName}!= null"><a
-				class="nav-link" th:href="@{/order/}">Order(s)</a></li>
+					<a class="dropdown-item" th:href="@{/users/update/{id}(id=${session.userId})}">Update</a>
+					<a class="dropdown-item" th:href="@{/logout}">Log Out</a>
+				</div></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/products/create}">
+					<i class="fas fa-th"></i> Create product
+				</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/users/}">
+					<i class="fas fa-user"></i> List Users
+				</a></li>
+			<li class="nav-itemn" th:if="${session.userName}!= null"><a class="nav-link" th:href="@{/cart/}">
+					<i class="fas fa-shopping-cart"></i> Cart (<span th:text="${count}"></span>)
+				</a></li>
+			<li class="nav-itemn" th:if="${session.userName}!= null"><a class="nav-link" th:href="@{/order/}">Order(s)</a></li>
 		</ul>
 	</nav>
 
@@ -62,8 +52,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="product: ${products}">
-					<td><a th:href="@{/products/{id}(id=${product.productId})}"
-						th:text="${product.productName}"></a></td>
+					<td>
+						<a th:href="@{/products/{id}(id=${product.productId})}" th:text="${product.productName}"></a>
+					</td>
 					<td th:text="${product.category}"></td>
 					<td th:text="${product.price}"></td>
 				</tr>

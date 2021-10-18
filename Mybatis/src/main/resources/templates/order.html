@@ -4,23 +4,16 @@
 <title>Order</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<div th:insert="common.html :: source"></div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div th:insert="common.html :: source"></div>
 </head>
 <body>
 
-<div th:insert="common.html :: navigation"></div>
+	<div th:insert="common.html :: navigation"></div>
 	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
@@ -40,37 +33,40 @@
 					<th>total</th>
 					<th>delivery</th>
 					<th>status</th>
+					<th>delete</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="order: ${orders}">
-					<td><a th:href="@{/order/{id}(id=${order.orderId})}"
-						th:text="${order.orderId}"></a></td>
-					<td th:if="${session.role}=='admin'"><a th:href="@{/users/{id}(id=${order.userId})}"
-						th:text="${order.userId}"></a></td>
+					<td>
+						<a th:href="@{/order/{id}/(id=${order.orderId})}" th:text="${order.orderId}"></a>
+					</td>
+					<td th:if="${session.role}=='admin'">
+						<a th:href="@{/users/{id}(id=${order.userId})}" th:text="${order.userId}"></a>
+					</td>
 					<td th:text="${order.total}"></td>
 					<td th:text="${#dates.format(order.delivery, 'yyyy-MM-dd')}"></td>
 					<td th:if="${session.role} == 'user'">
-					<span th:text="${order.status}"></span>
+						<span th:text="${order.status}"></span>
 					</td>
 					<td th:if="${session.role} == 'admin'">
 						<div class="form-group">
 							<form th:action="@{/order/update}" method="POST">
 								<input type="hidden" th:value="${order.orderId}" name="orderId">
-								<select name="status" class="form-control" style="max-width: 10rem"
-									th:value="${order.status}">
+								<select name="status" class="form-control" style="max-width: 10rem" th:value="${order.status}">
 									<option th:selected="${order.status == 'processing'}" th:value="'processing'">processing</option>
 									<option th:selected="${order.status == 'completed'}" th:value="'completed'">completed</option>
-								</select> <input type="submit" class="btn btn-outline-secondary"
-									value="Submit">
+								</select>
+								<input type="submit" class="btn btn-outline-secondary" value="Submit">
 								<div class="form-group"></div>
 							</form>
 						</div>
 					</td>
+					<td><a th:href="@{/order/delete/{id}(id=${order.orderId})}" type="buttom">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-		<div th:insert="common.html :: footer"></div>
+	<div th:insert="common.html :: footer"></div>
 </body>
 </html>
