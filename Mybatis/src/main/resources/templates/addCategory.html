@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Category</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Category list</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container px-4 px-lg-5 mt-5 mb-5">
+		<div class="row">
+			<div class="form-group">
+				<div class="mx-auto col-sm-6">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="mb-0">Add category</h4>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/category/add}" method="POST">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">level1 :</label>
+									<select name="categoryId1" style='width: 250px' id="level1" class="form-control row">
+										<option value="0">Please select category level1</option>
+										<option th:each="category1 : ${categories}" th:value="${category1.categoryId}" th:text="${category1.categoryName}"></option>
+									</select>
+								</div>
+								<p>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">level2 :</label>
+									<select name="categoryId2" style='width: 250px' id="level2" class="form-control row">
+										<option value="0">Please select category level2</option>
+									</select>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label form-control-label" for="categoryName">Add category name:</label>
+									<input type="text" id="categoryName" name="categoryName" class="form-control" required>
+								</div>
+								<p>
+								<div class="row">
+									<div class="col text-center">
+										<input type="submit" class="btn btn-outline-secondary" value="Submit" />
+									</div>
+								</div>
+							</form>
+
+							<!--  
+							<form th:action="@{/action_page}">
+								<label for="cars">Category:</label>
+								<select name="categoryId" id="category">
+									<optgroup th:label="${category1.categoryName}" th:each="category1 : ${categories}">
+										<option th:each="category2: ${category1.subCategory}" th:value="${category2.categoryId}" th:text="${category2.categoryName}">category2</option>
+									</optgroup>
+								</select>
+								<br>
+								<br>
+								<input type="submit" value="Submit">
+							</form>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		//level2
+		$("#level1").bind(
+				"change",
+				function() {
+					$("#level2 option").not(":first").remove();
+					$.ajax({
+						url : '/category/level2',
+						data : {
+							categoryId1 : $("#level1").val()
+						},
+						success : function(d) {
+							if (d) {
+								var data = d;
+								for ( var i in data) {
+									$("#level2:last").append(
+											"<option value=" + data[i].categoryId + ">"
+													+ data[i].categoryName
+													+ "</option>")
+								}
+							} else {
+								layer.msg("fail", {
+									icon : 2,
+									time : 2000
+								})
+							}
+						}
+					})
+				});
+	</script>
+</body>
+</html>

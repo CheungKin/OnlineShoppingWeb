@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheung.mybatis.repository.CategoryRepository">
+<resultMap id="category" type="Category">
+     <id column="categoryId1" property="categoryId"></id>
+     <result column="categoryName1" property="categoryName"></result>
+     <result column="level1" property="level"></result>
+     <collection property="subCategory" ofType="Category">
+          <id column="categoryId2" property="categoryId"></id>
+     <result column="categoryName2" property="categoryName"></result>
+     <result column="level2" property="level"></result>
+     <result column="parentId2" property="parentId"></result>
+     <collection property="subCategory" ofType="Category">
+      <id column="categoryId3" property="categoryId"></id>
+     <result column="categoryName3" property="categoryName"></result>
+     <result column="level3" property="level"></result>
+     <result column="parentId3" property="parentId"></result>
+     </collection>
+     </collection>
+</resultMap>
+<resultMap id="level3" type="Category">
+<id column="categoryId1" property="categoryId"></id>
+     <result column="categoryName1" property="categoryName"></result>
+     <result column="level1" property="level"></result>
+     <association property="category" javaType="Category">
+     <id column="categoryId2" property="categoryId"></id>
+     <result column="categoryName2" property="categoryName"></result>
+     <result column="level2" property="level"></result>
+     <result column="parentId2" property="parentId"></result>
+     <association property="category" javaType="Category">
+      <id column="categoryId3" property="categoryId"></id>
+     <result column="categoryName3" property="categoryName"></result>
+     <result column="level3" property="level"></result>
+     <result column="parentId3" property="parentId"></result>
+     </association>
+     </association>
+</resultMap>
+    <select id="findAll" resultMap="category">
+        select a.categoryId as categoryId1, a.categoryName as categoryName1, a.level as level1, b.categoryId as categoryId2, b.categoryName as categoryName2, b.level as level2, b.parentId as parentId2, c.categoryId as categoryId3, c.categoryName as categoryName3, c.level as level3, c.parentId as parentId3 from category a, category b, category c where a.categoryId = b.parentId and b.categoryId = c.parentId
+    </select>
+    <select id="categoryName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select categoryName from category where categoryId = #{categoryId}
+    </select>
+    <select id="level1" resultType="Category">
+       select * from category where level = 1
+    </select>
+    <select id="level2" resultType="Category" parameterType="java.lang.Integer">
+       select * from category where level = 2 and parentId = #{categoryId} 
+    </select>
+    <select id="level3" resultType="Category" parameterType="java.lang.Integer">
+       select * from category where level = 3 and parentId = #{categoryId}
+    </select>
+    <select id="showFullPath" resultMap="level3" parameterType="java.lang.Integer">
+      select a.categoryId as categoryId1, a.categoryName as categoryName1, a.level as level1, b.categoryId as categoryId2, b.categoryName as categoryName2, b.level as level2, b.parentId as parentId2, c.categoryId as categoryId3, c.categoryName as categoryName3, c.level as level3, c.parentId as parentId3 from category a, category b, category c where a.categoryId = b.parentId and b.categoryId = c.parentId and c.categoryId = #{categoryId}
+    </select>
+    <select id="findById" parameterType="java.lang.Integer" resultType="Category">
+     select * from category where categoryId = #{categoryId}
+    </select>
+    <insert id="save" parameterType="Category">
+        insert into category
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+         <if test="categoryName != null">
+         categoryName,
+         </if>
+         <if test="parentId != 0">
+         parentId,
+         </if>
+         <if test="level != 0">
+         level,
+         </if>
+         </trim>
+         values 
+         <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="categoryName != null">
+         #{categoryName, jdbcType=VARCHAR},
+         </if>
+         <if test="parentId != 0">
+         #{parentId, jdbcType=INTEGER},
+         </if>
+         <if test="level != 0">
+         #{level, jdbcType=INTEGER},
+         </if>
+         </trim>
+    </insert>
+    <update id="update" parameterType="Category">
+        update category set
+         <trim suffixOverrides="," >
+         <if test="categoryName != null">
+         categoryName = #{categoryName, jdbcType=VARCHAR}, 
+         </if>
+         <if test="parentId != 0">
+         parentId = #{parentId, jdbcType=INTEGER},
+         </if>
+         </trim>
+         where categoryId = #{categoryId}
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer"> 
+        delete from category where categoryId = #{categoryId}
+    </delete>
+</mapper>

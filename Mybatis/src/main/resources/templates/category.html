@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Category list</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Category list</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+		<a th:href="@{/category/add}" class="btn btn-outline-dark" role="button"> Add category </a>
+		<p>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>id</th>
+					<th>name</th>
+				</tr>
+			</thead>
+			<tr th:each="category1 : ${categories}">
+				<td th:text="${category1.categoryId}"></td>
+				<td th:text="${category1.categoryName}"></td>
+				<td>
+					<a th:href="@{/category/update/{id}(id=${category1.categoryId})}"> update </a>
+				</td>
+				<td>
+					<a th:href="@{/category/delete/{id}(id=${category1.categoryId})}" onclick="return confirm('Are you sure?')">
+						<i class="fas fa-user-minus"></i>
+					</a>
+				</td>
+				<td>
+					<table class="table table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th>id2</th>
+								<th>name2</th>
+							</tr>
+						</thead>
+						<tr th:each="category2 : ${category1.subCategory}">
+							<td th:text="${category2.categoryId}"></td>
+							<td th:text="${category2.categoryName}"></td>
+							<td>
+								<a th:href="@{/category/update/{id}(id=${category2.categoryId})}"> update </a>
+							</td>
+							<td>
+								<a th:href="@{/category/delete/{id}(id=${category2.categoryId})}" onclick="return confirm('Are you sure?')">
+									<i class="fas fa-user-minus"></i>
+								</a>
+							</td>
+							<td>
+								<table class="table table-hover">
+									<thead class="thead-dark">
+										<tr>
+											<th>id3</th>
+											<th>name3</th>
+										</tr>
+									</thead>
+									<tr th:each="category3: ${category2.subCategory}">
+										<td th:text="${category3.categoryId}"></td>
+										<td th:text="${category3.categoryName}"></td>
+										<td>
+											<a th:href="@{/category/update/{id}(id=${category3.categoryId})}"> update </a>
+										</td>
+										<td>
+											<a th:href="@{/category/delete/{id}(id=${category3.categoryId})}" onclick="return confirm('Are you sure?')">
+												<i class="fas fa-user-minus"></i>
+											</a>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div th:insert="common.html :: footer"></div>
+</body>
+</html>

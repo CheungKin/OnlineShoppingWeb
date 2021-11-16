@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Show Products</title>
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+	<!-- Navigation-->
+	<div th:insert="common.html :: navigation"></div>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder" th:text="${name}">Name</h1>
+			</div>
+		</div>
+	</header>
+	<!-- Category -->
+	<div th:insert="common.html :: category"></div>
+	<!-- Section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<p>
+				Total product(s): <span th:text="${page.Total}"></span>
+			</p>
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div class="col mb-5" th:each="product : ${products}">
+					<div class="card h-100">
+						<!-- Sale badge-->
+						<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; left: 0.5rem" th:if="${product.stock == 0}">Sold out</div>
+						<!-- Product image-->
+						<a th:href="@{/products/{id}(id=${product.productId})}">
+							<img class="card-img-top" th:src="${product.photo}" th:alt="${product.productName}" width="450" height="300" />
+						</a>
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder" th:text="${product.productName}">Product name</h5>
+								<!-- Product stock -->
+								<h6>
+									Stock : <span th:text="${product.stock}"></span>
+								</h6>
+								<!-- Product price-->
+								$<span th:text="${product.price}"></span>
+							</div>
+						</div>
+						<!-- Product actions-->
+						<div class="row" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="col text-center">
+							<h5>
+								<a th:href="@{/admin/product/update/{id}(id=${product.productId})}" class="btn btn-outline-dark" role="button">
+									<i class="far fa-edit"></i> Update
+								</a>
+							</h5>
+							<h5>
+								<a th:href="@{/admin/product/delete/{id}(id=${product.productId})}" onclick="return confirm('Are you sure?')" class="btn btn-outline-dark" role="button">
+									<i class="fas fa-user-minus"></i> Delete
+								</a>
+							</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:insert="common.html :: page"></div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<div th:insert="common.html :: footer"></div>
+</body>
+</html>

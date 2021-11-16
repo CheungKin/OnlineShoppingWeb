@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheung.mybatis.repository.AddressRepository">
+     <select id="findByuserId" parameterType="java.lang.Integer" resultType="Address">
+         select * from address where userId = #{userId}
+     </select>
+     <select id="findByAddressId"  parameterType="java.lang.Integer" resultType="Address">
+         select * from address where addressId = #{addressId}
+     </select>
+       <insert id="save" parameterType="Address">
+         insert into address         
+         <trim prefix="(" suffix=")" suffixOverrides="," >
+         userId,
+         <if test="area != null">
+         area,
+         </if>
+         <if test="address != null">
+         address,
+         </if>
+         <if test="receiver != null">
+         receiver,
+         </if>
+         <if test="phone != null">
+         phone,
+         </if>
+         </trim>
+         <trim prefix="values (" suffix=")" suffixOverrides="," >
+         #{userId},
+         <if test="area != null">
+         #{area, jdbcType=VARCHAR}, 
+         </if>
+         <if test="address != null">
+         #{address, jdbcType=VARCHAR},
+         </if>
+          <if test="receiver != null">
+         #{receiver, jdbcType=VARCHAR},
+         </if>
+         <if test="phone != null">
+         #{phone, jdbcType=VARCHAR},
+         </if>
+         </trim>
+     </insert>
+     <update id="update" parameterType="Address">
+         update address set 
+         <trim suffixOverrides="," >
+         <if test="area != null">
+         area = #{area, jdbcType=VARCHAR}, 
+         </if>
+         <if test="address != null">
+         address = #{address, jdbcType=VARCHAR}, 
+         </if>
+         <if test="receiver != null">
+         receiver = #{receiver, jdbcType=VARCHAR},
+         </if>
+         <if test="phone != null">
+         phone = #{phone, jdbcType=VARCHAR},
+         </if>
+         <if test="isDefault != null">
+         isDefault = #{isDefault, jdbcType=BOOLEAN},
+         </if>
+         </trim> 
+         where addressId = #{addressId}
+     </update>
+     <delete id="delete" parameterType="java.lang.Integer">
+         delete from address where addressId = #{addressId}
+     </delete>
+     <update id="changeToFalse" parameterType="java.lang.Integer">
+         update address set isDefault = false where isDefault = true and userId = #{userId}
+     </update>
+     <update id="changeToTrue" parameterType="java.lang.Integer">
+         update address set isDefault = true where addressId = #{addressId}
+     </update>
+</mapper>

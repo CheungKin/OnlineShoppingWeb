@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>Register</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+
+	<div sec:authorize="hasRole('ROLE_ADMIN')" th:insert="common.html :: navigation"></div>
+
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder" sec:authorize="hasRole('ROLE_ADMIN')">Register</h1>
+			</div>
+		</div>
+	</header>
+
+	<div class="container px-4 px-lg-5 mt-5 mb-5">
+		<div class="row">
+			<div class="form-group">
+				<div class="mx-auto col-sm-6">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="mb-0">Update address</h4>
+						</div>
+						<div class="card-body">
+							<div class="alert alert-danger alert-dismissible" th:if="${err} != null">
+								<strong th:text="${err}"></strong>
+							</div>
+							<form th:action="@{/address/update/{id}(id=${address.addressId})}" method="POST" th:object="${address}" class="was-validated">
+								<div class="form-group row">
+									<label for="receiver">Receiver:</label>
+									<input type="text" id="receiver" th:field="*{receiver}" class="form-control" required>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label for="phone">Phone:</label>
+									<input type="tel" id="phone" th:field="*{phone}" class="form-control" pattern="[0-9]{8}" maxlength="8" required>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label for="area">Area:</label>
+									<select id="area" name="area" th:field="*{area}" class="form-control">
+										<option th:selected="*{area}" th:value="'Hong Kong Island'">Hong Kong Island</option>
+										<option th:selected="*{area}" th:value="'Kowloon'">Kowloon</option>
+										<option th:selected="*{area}" th:value="'New Territories'">New Territories</option>
+									</select>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label for="addres">Address:</label>
+									<input type="text" id="address" th:field="*{address}" class="form-control" required>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col text-center">
+										<input type="submit" class="btn btn-outline-secondary" value="Update" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="common.html :: footer"></div>
+
+</body>
+</html>

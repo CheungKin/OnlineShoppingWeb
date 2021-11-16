@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Show Address</title>
+<div th:insert="common.html :: source"></div>
+</head>
+<body>
+<div th:insert="common.html :: navigation"></div>
+
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Address</h1>
+			</div>
+		</div>
+	</header>
+	<p>
+	<div class="container">
+		<p>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>Receiver</th>
+					<th>Phone</th>
+					<th>Address</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="address: ${multiaddress}">
+					<td th:text="${address.receiver}">receiver</td>
+					<td th:text="${address.phone}">phone</td>
+					<td th:text="${address.area}+', '+${address.address}">address</td>
+					<td>
+						<a th:href="@{/address/update/{addressId}(addressId=${address.addressId})}">
+							<i class="far fa-edit"></i>
+						</a>
+					</td>
+					<td>
+						<a th:href="@{/address/delete/{addressId}(addressId=${address.addressId})}" onclick="return confirm('Are you sure?')">
+							<i class="fas fa-user-minus"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div th:insert="common.html :: footer"></div>
+</body>
+</html>
