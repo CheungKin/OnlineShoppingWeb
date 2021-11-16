@@ -21,6 +21,12 @@ mybatis:
   mapper-locations: classpath:/mapping/*.xml
   type-aliases-package: com.cheung.mybatis.model
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    pageSizeZero: true
+    params: count=countSql
     
 

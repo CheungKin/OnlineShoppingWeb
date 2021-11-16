@@ -7,11 +7,14 @@
     <select id="findById" parameterType="java.lang.Integer" resultType="User">
         select * from users where userId = #{userId}
     </select>
-        <select id="findByName" parameterType="java.lang.String" resultType="User">
+    <select id="findByName" parameterType="java.lang.String" resultType="User">
         select * from users where userName = #{userName}
     </select> 
-    <insert id="save" parameterType="User">
-        insert into users(userName, password, address, role) values (#{userName}, #{password}, #{address}, #{role})
+    <select id="findByNameOrEmail" parameterType="java.lang.String" resultType="User">
+        select * from users where userName = #{userNameOrEmail} or email = #{userNameOrEmail}
+    </select> 
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        insert into users(userName, password, gender, email, role) values (#{userName}, #{password}, #{gender}, #{email}, #{role})
     </insert>
     <update id="update" parameterType="User">
         update users set
@@ -19,8 +22,11 @@
          <if test="password != null">
          password= #{password, jdbcType=VARCHAR}, 
          </if>
-         <if test="address != null">
-         address= #{address, jdbcType=VARCHAR},
+         <if test="gender != null">
+         gender= #{gender, jdbcType=VARCHAR},
+         </if>
+         <if test="email != null">
+         email= #{email, jdbcType=VARCHAR},
          </if>
          <if test="role != null">
          role = #{role, jdbcType=VARCHAR},
@@ -31,4 +37,7 @@
     <delete id="deleteById" parameterType="java.lang.Integer"> 
         delete from users where userId = #{userId}
     </delete>
+    <select id="search" parameterType="java.lang.String" resultType="User">
+        select * from users where userName like #{name} or email like #{name}
+    </select>
 </mapper>

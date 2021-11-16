@@ -7,14 +7,14 @@
      <select id="findById" parameterType="java.lang.Integer" resultType="Product">
          select * from products where productId = #{productId}
      </select>
-     <insert id="save" parameterType="Product">
+     <insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="productId">
          insert into products
          <trim prefix="(" suffix=")" suffixOverrides="," >
          <if test="productName != null">
          productName,
          </if>
-         <if test="category != null">
-         category,
+         <if test="categoryId != 0">
+         categoryId,
          </if>
          <if test="stock != null">
          stock,
@@ -33,8 +33,8 @@
          <if test="productName != null">
          #{productName, jdbcType=VARCHAR}, 
          </if>
-         <if test="category != null">
-         #{category, jdbcType=VARCHAR},
+         <if test="categoryId != 0">
+         #{categoryId, jdbcType=INTEGER},
          </if>
          <if test="stock != null">
          #{stock, jdbcType=INTEGER}, 
@@ -46,7 +46,7 @@
          #{photo, jdbcType=VARCHAR},
          </if>
           <if test="description != null">
-         #{description, jdbcType=VARCHAR},
+         #{description, jdbcType=BLOB},
          </if>
          </trim>
      </insert>
@@ -56,20 +56,20 @@
          <if test="productName != null">
          productName = #{productName, jdbcType=VARCHAR}, 
          </if>
-         <if test="category != null">
-         category = #{category, jdbcType=VARCHAR}, 
+         <if test="categoryId != 0">
+         categoryId = #{categoryId, jdbcType=INTEGER}, 
          </if>
-         <if test="stock != null">
+         <if test="stock != 0">
          stock = #{stock, jdbcType=INTEGER}, 
          </if>
-         <if test="price != null">
+         <if test="price != 0">
          price = #{price, jdbcType=INTEGER}, 
          </if>
          <if test="photo != null">
          photo = #{photo, jdbcType=VARCHAR},
          </if>
          <if test="description != null">
-         description = #{description, jdbcType=VARCHAR},
+         description = #{description, jdbcType=BLOB},
          </if>
          </trim> 
          where productId = #{productId}
@@ -77,4 +77,13 @@
      <delete id="deleteById" parameterType="java.lang.Integer">
          delete from products where productId = #{productId}
      </delete>
+     <select id="findBylevel2" parameterType="java.lang.Integer" resultType="Product">
+          select p.productId as productId, p.photo as photo, p.productName as productName, p.stock as stock, p.price as price, a.categoryName as categoryName from products p, category a where p.categoryId = a.categoryId and a.parentId = #{categoryId}
+     </select>
+     <select id="findBylevel3" parameterType="java.lang.Integer" resultType="Product">
+         select p.productId as productId, p.photo as photo, p.productName as productName, p.stock as stock, p.price as price, a.categoryName as categoryName from products p, category a where p.categoryId = a.categoryId and a.categoryId = #{categoryId}
+     </select>
+     <select id="search" parameterType="java.lang.String" resultType="Product">
+         select * from products where productName like #{productName} 
+     </select>
 </mapper>

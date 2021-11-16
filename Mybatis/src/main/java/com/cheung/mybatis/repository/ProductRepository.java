@@ -15,4 +15,10 @@ public interface ProductRepository {
 	public int update(Product product);
 
 	public int deleteById(Integer productId);
+
+	public List<Product> findBylevel2(Integer categoryId);
+
+	public List<Product> findBylevel3(Integer categoryId);
+	
+	public List<Product> search(String productName);
 }

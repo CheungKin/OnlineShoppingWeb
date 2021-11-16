@@ -23,24 +23,24 @@
 						<th>Product name</th>
 						<th>quantity</th>
 						<th>cost</th>
-						<th>buy it</th>
-						<th>delete</th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr th:each="cart: ${carts}">
+				<tbody>		
+					<tr th:each="cart: ${carts}">	
 						<td>
 							<a th:href="@{/products/{id}(id=${cart.productId})}">
-								<img th:src="@{${cart.photo}}" class="img-thumbnail" width="200" height="200">
+								<img th:src="@{${cart.product.photo}}" class="img-thumbnail" width="200" height="200">
 							</a>
 						</td>
-						<td th:text="${cart.productName}"></td>
+						<td th:text="${cart.product.productName}"></td>
 						<td>
 							<div class="form-group">
 								<form th:action="@{/cart/update/}" th:object="${cart}" method="POST" th:id="${cart.cartId}" th:onclick="submitform([[${cart.cartId}]])">
 									<input type="hidden" th:value="${cart.cartId}" name="cartId">
-									<input type="hidden" th:value="${cart.productId}" name="productId">
-									<input type="number" class="form-control" th:value="${cart.quantity}" name="quantity" th:min="1" th:max="${cart.stock}">
+									<input type="hidden" th:value="${cart.product.productId}" name="productId">
+									<input type="number" class="form-control" th:value="${cart.quantity}" name="quantity" th:min="1" th:max="${cart.product.stock}">
 								</form>
 							</div>
 						</td>
@@ -55,28 +55,22 @@
 					</tr>
 				</tbody>
 			</table>
+			<div th:insert="common.html :: page"></div>
 			<div class="fw-bolder">
 				<div class="row">
 					<div class="col text-center">
 						<h2>
 							Total: <span th:text="${total}"></span>
 						</h2>
-						<a th:href="@{/order/add}" class="btn btn-outline-secondary" role="button">
-							<h2>Buy All</h2>
-						</a>
+						<a th:href="@{/order/add}" class="btn btn-outline-secondary" type="buttom"><h3>Check out</h3></a>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript">
-		function submitform(cartId) {
-			document.getElementById(cartId).submit();
-		}
-	</script>
+	<div th:insert="common.html :: autoSubmit"></div>
 	<!-- Footer-->
 	<div th:insert="common.html :: footer"></div>
-	<!-- Bootstrap core JS-->
-	<div th:insert="common.html :: script"></div>
 </body>
 </html>

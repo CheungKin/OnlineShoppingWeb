@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cheung.mybatis.repository.CartRepository">
+     <resultMap id="product" type="Cart">
+     <id column="cartId" property="cartId"></id>
+     <result column="quantity" property="quantity"></result>
+     <result column="cost" property="cost"></result>
+     <association property="product" fetchType="lazy" select="com.cheung.mybatis.repository.ProductRepository.findById" javaType="Product" column="productId"></association>
+     </resultMap>
+     
      <select id="unique" resultType="Cart">
        select * from cart where userId = #{userId} and productId = #{productId}
      </select>
-     <select id="findByuserId" resultType="Cart">
-       select c.cartId as cartId, c.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost, p.stock as stock from products p, cart c where p.productId = c.productId and c.userId = #{userId}
+     <select id="findByuserId" resultMap="product">
+       select c.cartId as cartId, p.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost, p.stock as stock from products p, cart c where p.productId = c.productId and c.userId = #{userId}
      </select>
-     <select id="findBycartId" resultType="Cart">
-       select c.cartId as cartId, c.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost from products p, cart c where p.productId = c.productId and c.cartId = #{cartId}
+     <select id="findBycartId" resultMap="product">
+       select c.cartId as cartId, p.productId as productId, p.photo as photo, p.productName as productName, c.quantity as quantity, c.cost as cost from products p, cart c where p.productId = c.productId and c.cartId = #{cartId}
      </select>
      <insert id="save" parameterType="Cart">
        insert into cart (userId, productId, quantity, cost) values (#{userId}, #{productId}, #{quantity}, #{cost})

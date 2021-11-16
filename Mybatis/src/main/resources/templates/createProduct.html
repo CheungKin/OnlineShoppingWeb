@@ -4,69 +4,136 @@
 <title>Create product</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <div th:insert="common.html :: source"></div>
 </head>
 <body>
 	<div th:insert="common.html :: navigation"></div>
 	<!-- Header-->
-	<header class="bg-dark py-5">
-		<div class="container px-4 px-lg-5 my-5">
-			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Create product</h1>
+	<div class="container px-4 px-lg-5 mt-5 mb-5">
+		<div class="row">
+			<div class="form-group">
+				<div class="mx-auto col-sm-6">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="mb-0">Create product</h4>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/product/create}" method="POST" th:object="${product}" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="productName" class="col-lg-3 col-form-label form-control-label">Product name:</label>
+									<br>
+									<input type="text" id="productName" name="productName" th:field="*{productName}" class="form-control" placeholder="Please input product name" required>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Category level1:</label> <select name="categoryId1" style='width: 250px' id="level1" class="form-control row" required>
+										<option value="">Please select category level1</option>
+										<option th:each="category1 : ${categories}" th:value="${category1.categoryId}" th:text="${category1.categoryName}"></option>
+									</select>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Category level2 :</label> <select name="categoryId2" style='width: 250px' id="level2" class="form-control row" required>
+										<option value="">Please select category level2</option>
+									</select>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Category level3 :</label> <select name="categoryId" style='width: 250px' id="level3" class="form-control row" required>
+										<option value="">Please select category level3</option>
+									</select>
+								</div>
+								<div class="form-group row">
+									<label for="stock" class="col-lg-3 col-form-label form-control-label">Stock:</label>
+									<br>
+									<input type="number" id="stock" name="stock" th:field="*{stock}" class="form-control" min="0" required>
+								</div>
+								<div class="form-group row">
+									<label for="price" class="col-lg-3 col-form-label form-control-label">Price:</label>
+									<br>
+									<input type="number" id="price" name="price" th:field="*{price}" class="form-control" min="0" required>
+								</div>
+								<div class="form-group">
+									<label for="photo" class="col-lg-3 col-form-label form-control-label">Photo:</label>
+									<br>
+									<input type="file" id="photo" name="image" accept="image/png, image/jpeg, image/jpg" class="form-control-file border">
+								</div>
+								<div class="form-group row">
+									<label for="description" class="col-lg-3 col-form-label form-control-label">Description:</label>
+									<br>
+									<textarea id="description" name="description" th:field="*{description}" class="form-control" placeholder="Please input description"></textarea>
+								</div>
+								<div class="row">
+									<div class="col text-center">
+										<input type="submit" class="btn btn-outline-secondary" value="Submit" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</header>
-	<div class="alert alert-danger alert-dismissible" th:if="${err != null}">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong th:text="${err}"></strong>
-	</div>
-	<p th:text="${err}"></p>
-	<div class="card" style="width: 500px; margin-left: auto; margin-right: auto">
-		<form th:action="@{/products/create}" method="POST" th:object="${product}" enctype="multipart/form-data">
-			<div class="form-group">
-				<label for="productName">Product name:</label>
-				<br>
-				<input type="text" id="productName" name="productName" th:field="*{productName}" class="form-control" required>
-			</div>
-			<div class="form-group">
-				<label for="category">Category:</label>
-				<br>
-				<select id="category" name="category" class="form-control" th:field="*{category}">
-					<option th:value="'cap'" th:text="cap"></option>
-					<option th:value="'clothes'" th:text="clothes"></option>
-					<option th:value="'trousers'" th:text="trousers"></option>
-					<option th:value="'shoes'" th:text="shoes"></option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="stock">Stock:</label>
-				<br>
-				<input type="number" id="stock" name="stock" th:field="*{stock}" class="form-control" min="0" required>
-			</div>
-			<div class="form-group">
-				<label for="price">Price:</label>
-				<br>
-				<input type="number" id="price" name="price" th:field="*{price}" class="form-control" min="0" required>
-			</div>
-			<div class="form-group">
-				<label for="photo">Photo:</label>
-				<br>
-				<input type="file" id="photo" name="image" accept="image/png, image/jpeg, image/jpg" class="form-control-file border">
-			</div>
-			<div class="form-group">
-				<label for="description">Description:</label>
-				<br>
-				<textarea id="description" name="description" th:field="*{description}" class="form-control"></textarea>
-			</div>
-			<input type="submit" class="btn btn-primary" value="Submit" />
-		</form>
 	</div>
 
 	<div th:insert="common.html :: footer"></div>
+	<script type="text/javascript">
+		//level2
+		$("#level1").on(
+				"change",
+				function() {
+					$("#level2 option").not(":first").remove();
+					$.ajax({
+						url : '/category/level2',
+						data : {
+							categoryId1 : $("#level1").val()
+						},
+						success : function(d) {
+							if (d) {
+								var data = d;
+								for ( var i in data) {
+									$("#level2:last").append(
+											"<option value=" + data[i].categoryId + ">"
+													+ data[i].categoryName
+													+ "</option>")
+								}
+							} else {
+								layer.msg("fail", {
+									icon : 2,
+									time : 2000
+								})
+							}
+						}
+					})
+				});
+		//level3
+		$("#level2").on(
+				"change",
+				function() {
+					$("#level3 option").not(":first").remove();
+					$.ajax({
+						url : '/category/level3',
+						data : {
+							categoryId2 : $("#level2").val()
+						},
+						success : function(d) {
+							if (d) {
+								var data = d;
+								for ( var i in data) {
+									$("#level3:last").append(
+											"<option value=" + data[i].categoryId + ">"
+													+ data[i].categoryName
+													+ "</option>")
+								}
+							} else {
+								layer.msg(d.msg, {
+									icon : 2,
+									time : 2000
+								});
+							}
+						}
+					})
+				});
+	</script>
 </body>
 </html>

@@ -4,11 +4,6 @@
 <title>Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <div th:insert="common.html :: source"></div>
 </head>
 <body>
@@ -16,44 +11,56 @@
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Log in</h1>
+				<h1 class="display-4 fw-bolder">Login</h1>
 			</div>
 		</div>
 	</header>
-	<!-- Section-->
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
+
+	<div class="container px-4 px-lg-5 mt-5 mb-5">
+		<div class="row">
 			<div class="form-group">
-				<div class="card" style="width: 500px; margin-left: auto; margin-right: auto">
-
-					<div class="alert alert-danger alert-dismissible" th:if="${err} != null">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong th:text="${err}"></strong>
-					</div>
-
-
-					<form th:action="@{/login}" method="POST" th:object="${user}" class="was-validated">
-						<div class="form-group">
-							<label for="userName">User name:</label>
-							<br>
-							<input type="text" id="userName" th:field="*{userName}" class="form-control" required>
+				<div class="mx-auto col-sm-6">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="mb-0">Login</h4>
 						</div>
-						<div class="form-group">
-							<label for="pwd">Password:</label>
-							<br>
-							<input type="password" id="pwd" th:field="*{password}" class="form-control" required>
-						</div>
-						<div class="row">
-							<div class="col text-center">
-								<input type="submit" class="btn btn-outline-secondary" value="Login" />
+						<div class="card-body">
+							<div class="alert alert-danger alert-dismissible" th:if="${err} != null">
+								<strong th:text="${err}"></strong>
 							</div>
+							<form th:action="@{/login}" method="POST" class="form was-validated" role="form">
+								<div class="form-group row">
+									<label for="NameOrEmail" class="col-lg-3 col-form-label form-control-label">Name or email:</label>
+									<div class="col-lg-9">
+										<input type="text" id="NameOrEmail" name="userNameOrEmail" class="form-control" required>
+									</div>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label for="password" class="col-lg-3 col-form-label form-control-label">Password:</label>
+									<div class="col-lg-9">
+										<input type="password" id="password" name="password" class="form-control" required>
+									</div>
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="remember">Remember Me</label>
+									<input type="checkbox" id="remember" name="remember-me">
+								</div>
+								<br>
+								<div class="row">
+									<div class="col text-center">
+										<input type="submit" class="btn btn-outline-secondary" value="Login" />
+									</div>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 
-
+	<div th:insert="common.html :: footer"></div>
 </body>
 </html>

@@ -8,5 +8,5 @@ public class Comment {
 	private int userId;
 	private int productId;
 	private String userComment;
-	private String userName;
+	private User user;
 }

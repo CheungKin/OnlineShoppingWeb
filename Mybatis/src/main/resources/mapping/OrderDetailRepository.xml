@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cheung.mybatis.repository.OrderDetailRepository">
-     <select id="findByorderId" parameterType="java.lang.Integer" resultType="OrderDetail">
+          <resultMap id="orderDetail" type="OrderDetail">
+     <id column="detailId" property="detailId"></id>
+     <result column="orderId" property="orderId"></result>
+     <result column="productId" property="productId"></result>
+     <result column="quantity" property="quantity"></result>
+     <result column="cost" property="cost"></result>
+     <association property="product" fetchType="lazy" select="com.cheung.mybatis.repository.ProductRepository.findById" javaType="Product" column="productId"></association>
+     </resultMap>
+     
+     <select id="findByorderId" parameterType="java.lang.Integer" resultMap="orderDetail">
        select o.orderId as orderId, p.productId as productId, p.photo as photo, p.productName as productName, o.quantity as quantity, o.cost as cost from order_detail o, products p where p.productId = o.productId and orderId = #{orderId}
      </select>
      <insert id="save" parameterType="OrderDetail">

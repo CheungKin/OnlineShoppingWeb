@@ -4,11 +4,6 @@
 <title>Add Order</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <div th:insert="common.html :: source"></div>
 </head>
 <body>
@@ -36,9 +31,9 @@
 			<tbody>
 				<tr th:each="cart: ${carts}">
 					<td>
-						<img th:src="@{${cart.photo}}" class="img-thumbnail" width="200" height="200">
+						<img th:src="@{${cart.product.photo}}" class="img-thumbnail" width="200" height="200">
 					</td>
-					<td th:text="${cart.productName}"></td>
+					<td th:text="${cart.product.productName}"></td>
 					<td th:text="${cart.quantity}"></td>
 					<td th:text="${cart.cost}"></td>
 				</tr>
@@ -49,11 +44,18 @@
 				<h2>
 					Total: <span th:text="${total}"></span>
 				</h2>
-				<h2>Delivery Date:</h2>
 				<form th:action="@{/order/comfirm}" method="POST">
 					<input type="hidden" th:value="${total}" name="total">
 					<div class="form-group">
-						<input id="datefield" type="date" class="text-center" style="max-width: 20rem" name="delivery" min="1899-01-01">
+						<h2><label for="addressId">Address:</label></h2>
+						<select  id="addressId" name="addressId" class="text centre" style="max-width: 20rem">
+							<option th:each="address : ${multiaddress}" th:selected="${address.isDefault == true }" th:value="${address.addressId}" th:text="${address.receiver}+': '+${address.area}+', '+${address.address}"></option>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<h2><label for="datefield">Delivery Date:</label></h2>
+						<input id="datefield" type="date" class="text centre" style="max-width: 20rem" name="delivery" min="1899-01-01" required>
 					</div>
 					<input type="submit" class="btn btn-outline-secondary" value="Comfirm">
 				</form>

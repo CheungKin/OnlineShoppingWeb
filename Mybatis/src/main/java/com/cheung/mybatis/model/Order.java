@@ -13,6 +13,8 @@ public class Order {
 	private int total;
 	@DateTimeFormat(pattern = "yyyy-MM-dd") 
 	private Date delivery;
+	private int addressId;
 	private String status;
 	private int productId;
+	private Address address;
 }

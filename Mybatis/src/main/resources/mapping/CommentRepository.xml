@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cheung.mybatis.repository.CommentRepository">
+     <resultMap id="commentDetail" type="Comment">
+      <id property="commentId" column="commentId"></id>
+      <result property="productId" column="productId"></result>
+      <result property="userComment" column="userComment"></result>
+      <association property="user" fetchType="lazy" select="com.cheung.mybatis.repository.UserRepository.findById" javaType="User" column="userId"></association>
+     </resultMap>
      <select id="findByCommentId" resultType="Comment" parameterType="java.lang.Integer">
          select * from comment where commentId = #{commentId}
      </select>
-     <select id="findByProductId" parameterType="java.lang.Integer" resultType="Comment">
-         select c.commentId as commentId, u.userName as userName, c.productId as productId, c.userComment as userComment from comment c , users u where c.userId = u.userId and productId = #{productId}
+     <select id="findByProductId" parameterType="java.lang.Integer" resultMap="commentDetail">
+         select * from comment where productId = #{productId}
      </select>
      <insert id="save" parameterType="Comment">
          insert into comment(userId, productId, userComment) values (#{userId}, #{productId}, #{userComment})

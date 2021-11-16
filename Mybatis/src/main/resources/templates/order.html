@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <title>Order</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <div th:insert="common.html :: source"></div>
 </head>
 <body>
@@ -25,15 +20,22 @@
 
 	<div class="container">
 		<p>
+		<h4>
+			Total order(s): <span th:text="${page.Total}"></span>
+		</h4>
+		<p>
 		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th>Order Id</th>
 					<th th:if="${session.role}=='admin'">User Id</th>
+					<th>receiver</th>
+					<th>phone</th>
+					<th>address</th>
 					<th>total</th>
 					<th>delivery</th>
 					<th>status</th>
-					<th>delete</th>
+					<th th:if="${session.role}=='admin'">delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,30 +44,36 @@
 						<a th:href="@{/order/{id}/(id=${order.orderId})}" th:text="${order.orderId}"></a>
 					</td>
 					<td th:if="${session.role}=='admin'">
-						<a th:href="@{/users/{id}(id=${order.userId})}" th:text="${order.userId}"></a>
+						<a th:href="@{/admin/user/{id}(id=${order.userId})}" th:text="${order.userId}"></a>
 					</td>
+					<td th:text="${order.address.receiver}"></td>
+					<td th:text="${order.address.phone}"></td>
+					<td th:text="${order.address.address}"></td>
 					<td th:text="${order.total}"></td>
 					<td th:text="${#dates.format(order.delivery, 'yyyy-MM-dd')}"></td>
-					<td th:if="${session.role} == 'user'">
+					<td sec:authorize="hasRole('ROLE_USER')">
 						<span th:text="${order.status}"></span>
 					</td>
-					<td th:if="${session.role} == 'admin'">
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
 						<div class="form-group">
-							<form th:action="@{/order/update}" method="POST">
+							<form th:action="@{/admin/order/update}" method="POST">
 								<input type="hidden" th:value="${order.orderId}" name="orderId">
 								<select name="status" class="form-control" style="max-width: 10rem" th:value="${order.status}">
 									<option th:selected="${order.status == 'processing'}" th:value="'processing'">processing</option>
+									<option th:selected="${order.status == 'pending'}" th:value="'pending'">pending</option>
 									<option th:selected="${order.status == 'completed'}" th:value="'completed'">completed</option>
 								</select>
 								<input type="submit" class="btn btn-outline-secondary" value="Submit">
-								<div class="form-group"></div>
 							</form>
 						</div>
 					</td>
-					<td><a th:href="@{/order/delete/{id}(id=${order.orderId})}" type="buttom">Delete</a></td>
+					<td th:if="${session.role}=='admin'">
+						<a th:href="@{/admin/order/delete/{id}(id=${order.orderId})}" type="buttom">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div th:insert="common.html :: page"></div>
 	</div>
 	<div th:insert="common.html :: footer"></div>
 </body>

@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cheung.mybatis.model.Cart;
+import com.cheung.mybatis.model.Order;
 import com.cheung.mybatis.model.Product;
 import com.cheung.mybatis.repository.CartRepository;
 import com.cheung.mybatis.repository.ProductRepository;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/cart")
@@ -53,13 +56,17 @@ public class CartController {
 	}
 
 	@GetMapping("/")
-	public String show(ModelMap map, HttpSession session) {
+	public String show(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,ModelMap map, HttpSession session) {
 		Integer userId = (Integer) session.getAttribute("userId");
+		PageHelper.startPage(pageNo,8);
 		List<Cart> carts = cartRepository.findByuserId(userId);
 		if (carts.isEmpty()) {
 			map.addAttribute("empty", "Your cart is empty");
 		} else {
+			PageInfo<Cart> page = new PageInfo<Cart>(carts);
 			map.addAttribute("carts", carts);
+			map.addAttribute("pageNo", pageNo);
+			map.addAttribute("page", page);
 			map.addAttribute("total", cartRepository.total(userId));
 		}
 		return "cart";

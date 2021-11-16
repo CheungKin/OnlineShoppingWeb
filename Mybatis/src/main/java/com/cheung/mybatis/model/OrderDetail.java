@@ -9,6 +9,6 @@ public class OrderDetail {
 	private int productId;
 	private int quantity;
 	private int cost;
-	private String photo;
-	private String productName;
+	private Product product;
+
 }
