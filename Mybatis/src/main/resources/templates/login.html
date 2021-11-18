@@ -25,8 +25,8 @@
 							<h4 class="mb-0">Login</h4>
 						</div>
 						<div class="card-body">
-							<div class="alert alert-danger alert-dismissible" th:if="${err} != null">
-								<strong th:text="${err}"></strong>
+							<div class="alert alert-danger alert-dismissible" th:if="${error} != null">
+								<strong th:text="${error}"></strong>
 							</div>
 							<form th:action="@{/login}" method="POST" class="form was-validated" role="form">
 								<div class="form-group row">

@@ -68,7 +68,7 @@ public class AdminController {
 	@GetMapping("/user/delete/{userId}")
 	public String deleteById(@PathVariable("userId") Integer userId) {
 		userRepository.deleteById(userId);
-		return "redirect:/users/";
+		return "redirect:/admin/user/";
 	}
 
 	@GetMapping("/user/search")

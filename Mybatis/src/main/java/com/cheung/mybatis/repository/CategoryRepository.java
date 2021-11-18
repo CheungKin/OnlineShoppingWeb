@@ -23,5 +23,7 @@ public interface CategoryRepository {
 
 	public int update(Category categroy);
 
-	public int delete(Integer categoryId);
+	public int deleteById(Integer categoryId);
+	
+	public int deleteByParentId(Integer categoryId);
 }

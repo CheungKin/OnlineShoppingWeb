@@ -26,20 +26,23 @@
 								</div>
 								<br>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Category level1:</label> <select name="categoryId1" style='width: 250px' id="level1" class="form-control row" required>
+									<label class="col-lg-3 col-form-label form-control-label">Category level1:</label>
+									<select name="categoryId1" style='width: 250px' id="level1" class="form-control row" required>
 										<option value="">Please select category level1</option>
 										<option th:each="category1 : ${categories}" th:value="${category1.categoryId}" th:text="${category1.categoryName}"></option>
 									</select>
 								</div>
 								<br>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Category level2 :</label> <select name="categoryId2" style='width: 250px' id="level2" class="form-control row" required>
+									<label class="col-lg-3 col-form-label form-control-label">Category level2 :</label>
+									<select name="categoryId2" style='width: 250px' id="level2" class="form-control row" required>
 										<option value="">Please select category level2</option>
 									</select>
 								</div>
 								<br>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Category level3 :</label> <select name="categoryId" style='width: 250px' id="level3" class="form-control row" required>
+									<label class="col-lg-3 col-form-label form-control-label">Category level3 :</label>
+									<select name="categoryId" style='width: 250px' id="level3" class="form-control row" required>
 										<option value="">Please select category level3</option>
 									</select>
 								</div>

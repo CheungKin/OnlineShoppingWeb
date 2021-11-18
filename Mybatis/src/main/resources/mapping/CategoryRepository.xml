@@ -94,7 +94,10 @@
          </trim>
          where categoryId = #{categoryId}
     </update>
-    <delete id="delete" parameterType="java.lang.Integer"> 
+    <delete id="deleteById" parameterType="java.lang.Integer"> 
         delete from category where categoryId = #{categoryId}
+    </delete>
+    <delete id="deleteByParentId" parameterType="java.lang.Integer"> 
+        delete from category where parentId = #{categoryId}
     </delete>
 </mapper>

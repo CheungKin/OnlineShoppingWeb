@@ -60,7 +60,8 @@ public class CategoryController {
 
 	@GetMapping("/delete/{id}")
 	public String deleteCategory(@PathVariable("id") int categoryId) {
-		categoryRepository.delete(categoryId);
+		categoryRepository.deleteById(categoryId);
+		categoryRepository.deleteByParentId(categoryId);
 		return "redirect:/category/";
 	}
 
