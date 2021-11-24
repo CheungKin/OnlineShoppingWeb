@@ -25,7 +25,6 @@ import com.cheung.mybatis.model.Cart;
 import com.cheung.mybatis.model.Order;
 import com.cheung.mybatis.model.OrderDetail;
 import com.cheung.mybatis.model.Product;
-import com.cheung.mybatis.model.User;
 import com.cheung.mybatis.repository.AddressRepository;
 import com.cheung.mybatis.repository.CartRepository;
 import com.cheung.mybatis.repository.OrderDetailRepository;

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.cheung.mybatis.model.Category;
 import com.cheung.mybatis.model.Comment;
 import com.cheung.mybatis.model.Product;
@@ -43,16 +42,21 @@ public class ProductController {
 		List<Category> categories = categoryRepository.findAll();
 		map.addAttribute("categories", categories);
 	}
-	
+
 	@GetMapping("/{id}")
 	public String findById(@PathVariable("id") Integer productId, HttpSession session, ModelMap map) {
 		Product product = productRepository.findById(productId);
-		List<Comment> comments = commentRepository.findByProductId(productId);
-		map.addAttribute("product", product);
-		map.addAttribute("comments", comments);
-		Integer userId = (Integer) session.getAttribute("userId");
-		boolean showComment = (orderRepository.findByBothId(userId, productId).isEmpty()) ? false : true;
-		map.addAttribute("showComment", showComment);
+		if (product == null) {
+			map.addAttribute("isEmpty", true);
+		} else {
+			map.addAttribute("isEmpty", false);
+			List<Comment> comments = commentRepository.findByProductId(productId);
+			map.addAttribute("product", product);
+			map.addAttribute("comments", comments);
+			Integer userId = (Integer) session.getAttribute("userId");
+			boolean showComment = (orderRepository.findByBothId(userId, productId).isEmpty()) ? false : true;
+			map.addAttribute("showComment", showComment);
+		}
 		this.listCategory(map);
 		return "productDetail";
 	}

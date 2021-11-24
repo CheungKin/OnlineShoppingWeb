@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cheung.mybatis.model.Cart;
-import com.cheung.mybatis.model.Order;
 import com.cheung.mybatis.model.Product;
 import com.cheung.mybatis.repository.CartRepository;
 import com.cheung.mybatis.repository.ProductRepository;

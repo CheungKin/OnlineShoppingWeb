@@ -48,7 +48,7 @@ public class AdminController {
 	private OrderDetailRepository orderDetailRepository;
 
 	@GetMapping("/user")
-	public String findAllUser(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,ModelMap map) {
+	public String findAllUser(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, ModelMap map) {
 		PageHelper.startPage(pageNo, 8);
 		List<User> users = userRepository.findAll();
 		PageInfo<User> page = new PageInfo<User>(users);
@@ -61,7 +61,12 @@ public class AdminController {
 	@GetMapping("/user/{userId}")
 	public String findByUserId(@PathVariable("userId") Integer userID, ModelMap map) {
 		User user = userRepository.findById(userID);
-		map.addAttribute("user", user);
+		if (user == null) {
+			map.addAttribute("isEmpty", true);
+		} else {
+			map.addAttribute("isEmpty", false);
+			map.addAttribute("user", user);
+		}
 		return "showUser";
 	}
 
@@ -72,7 +77,8 @@ public class AdminController {
 	}
 
 	@GetMapping("/user/search")
-	public String search(@RequestParam("name") String name, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,ModelMap map) {
+	public String search(@RequestParam("name") String name,
+			@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, ModelMap map) {
 		String search = "%" + name + "%";
 		PageHelper.startPage(pageNo, 8);
 		List<User> users = userRepository.search(search);
@@ -101,7 +107,7 @@ public class AdminController {
 			String filePath = System.getProperty("user.dir") + "/src/main/resources/static/images/";
 			File filepath = new File(filePath + path);
 			image.transferTo(filepath);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			product.setPhoto("/images/NOPhoto.jpeg");
 		}
 		productRepository.save(product);
@@ -120,9 +126,8 @@ public class AdminController {
 
 	@PostMapping("/product/update/{productId}")
 	public String updateProduct(@PathVariable("productId") int productId, @ModelAttribute("product") Product product,
-			@RequestParam("image") MultipartFile image, ModelMap map)
-			throws IllegalStateException, IOException {
-		if(image.isEmpty()) {
+			@RequestParam("image") MultipartFile image, ModelMap map) throws IllegalStateException, IOException {
+		if (image.isEmpty()) {
 			productRepository.update(product);
 		} else {
 			String path = StringUtils.cleanPath(image.getOriginalFilename());
