@@ -2,6 +2,7 @@ package com.cheung.mybatis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -12,6 +13,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -34,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("userNameOrEmail").passwordParameter("password").loginPage("/login").failureHandler(authenticationFailureHandler()).permitAll()
 				.successHandler(authenticationSuccessHandler()).and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
 				.deleteCookies("JSESSIONID").permitAll().and().rememberMe().userDetailsService(this.userDetailsService)
-				.key("uniqueAndSecret").tokenValiditySeconds(60 * 60);
+				.key("uniqueAndSecret").tokenValiditySeconds(86400);
 	}
 
 	@Override

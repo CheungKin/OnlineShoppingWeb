@@ -38,6 +38,13 @@
 						</div>
 						<div class="card-body">
 							<form th:action="@{/users/update/{id}(id=${user.userId})}" th:object="${user}" method="POST">
+								<div class="form-group row" sec:authorize="hasRole('ROLE_ADMIN')">
+									<label for="userName" class="col-lg-3 col-form-label form-control-label">User name:</label>
+									<div class="col-lg-9">
+										<input type="text" id="userName" name="userName" class="form-control" th:field="*{userName}" required>
+									</div>
+								</div>
+								<br>
 								<div class="form-group row">
 									<label for="password" class="col-lg-3 col-form-label form-control-label">Password:</label>
 									<div class="col-lg-9">

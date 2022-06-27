@@ -19,6 +19,9 @@
     <update id="update" parameterType="User">
         update users set
          <trim suffixOverrides="," >
+         <if test="userName != null">
+         userName= #{userName, jdbcType=VARCHAR}, 
+         </if>
          <if test="password != null">
          password= #{password, jdbcType=VARCHAR}, 
          </if>
