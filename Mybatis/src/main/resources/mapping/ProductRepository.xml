@@ -59,10 +59,10 @@
          <if test="categoryId != 0">
          categoryId = #{categoryId, jdbcType=INTEGER}, 
          </if>
-         <if test="stock != 0">
+         <if test="stock >= 0">
          stock = #{stock, jdbcType=INTEGER}, 
          </if>
-         <if test="price != 0">
+         <if test="price >= 0">
          price = #{price, jdbcType=INTEGER}, 
          </if>
          <if test="photo != null">

@@ -15,7 +15,7 @@
 	<div th:insert="common.html :: category"></div>
 	<!-- Product section-->
 	
-	<div class="container" th:if="${isEmpty == true}">The product is not existing!</div>
+	<div class="container px-4 px-lg-5 mt-5" th:if="${isEmpty == true}">The product is not existing!</div>
 	
 	<section class="py-5" th:if="${isEmpty == false}">
 		<div class="container px-4 px-lg-5 my-5">

@@ -40,7 +40,7 @@
 								<div class="form-group row" th:if="${level}==3">
 									<label class="col-lg-3 col-form-label form-control-label">level 2 :</label>
 									<select name="level2Id" style='width: 250px' id="level2" class="form-control row">
-										<option value="0">Please select category level2</option>
+								        <option value="0">Please select category level2</option>
 									</select>
 								</div>
 								<div class="form-group row">
@@ -87,9 +87,8 @@
 						data : {
 							categoryId1 : $("#level1").val()
 						},
-						success : function(d) {
-							if (d) {
-								var data = d;
+						success : function(data) {
+							if (data) {
 								for ( var i in data) {
 									$("#level2:last").append(
 											"<option value=" + data[i].categoryId + ">"

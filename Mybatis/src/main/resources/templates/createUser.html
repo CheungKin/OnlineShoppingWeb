@@ -31,6 +31,7 @@
 							</div>
 							<form th:action="@{/register}" method="POST" th:object="${user}" class="form was-validated" role="form">
 								<input type="hidden" name="role" value="ROLE_USER">
+								<h3>User information:</h3>
 								<div class="form-group row">
 									<label for="userName" class="col-lg-3 col-form-label form-control-label">User name:</label>
 									<div class="col-lg-9">
@@ -70,6 +71,7 @@
 									</div>
 								</div>
 								<br>
+								<h3>Address:</h3><br>
 								<div th:object="${address}">
 									<div class="form-group row">
 										<label for="receiver" class="col-lg-3 col-form-label form-control-label">Receiver:</label>

@@ -35,6 +35,7 @@
 					<th>total</th>
 					<th>delivery</th>
 					<th>status</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">change status</th>
 					<th sec:authorize="hasRole('ROLE_ADMIN')">delete</th>
 				</tr>
 			</thead>
@@ -51,9 +52,7 @@
 					<td th:text="${order.address.address}"></td>
 					<td th:text="${order.total}"></td>
 					<td th:text="${#dates.format(order.delivery, 'yyyy-MM-dd')}"></td>
-					<td sec:authorize="hasRole('ROLE_ADMIN')">
-						<span th:text="${order.status}"></span>
-					</td>
+					<td th:text="${order.status}"></td>
 					<td sec:authorize="hasRole('ROLE_ADMIN')">
 						<div class="form-group">
 							<form th:action="@{/admin/order/update}" method="POST">

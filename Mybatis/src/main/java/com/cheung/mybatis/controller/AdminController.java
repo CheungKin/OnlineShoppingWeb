@@ -101,6 +101,7 @@ public class AdminController {
 	public String createProduct(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile image,
 			@RequestParam("categoryId") int categoryId, ModelMap map) throws IllegalStateException, IOException {
 		product.setCategoryId(categoryId);
+		// upload picture
 		try {
 			String path = StringUtils.cleanPath(image.getOriginalFilename());
 			product.setPhoto("/images/" + path);

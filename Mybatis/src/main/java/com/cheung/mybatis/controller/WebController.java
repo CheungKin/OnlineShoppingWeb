@@ -74,6 +74,7 @@ public class WebController {
 			userRepository.save(user);
 			int userId = user.getUserId();
 			address.setUserId(userId);
+			address.setDefault(true);		
 			addressRepository.save(address);
 			return "redirect:/login";
 		} else {

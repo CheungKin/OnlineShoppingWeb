@@ -25,18 +25,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	 @Bean
-		public AuthenticationFailureHandler authenticationFailureHandler() {
-	        return new AuthenticationFailureHandlerImpl();
-	    }
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+	    return new AuthenticationFailureHandlerImpl();
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/index", "/register", "/products/**").permitAll()
-				.antMatchers("/admin/**", "/category").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
-				.usernameParameter("userNameOrEmail").passwordParameter("password").loginPage("/login").failureHandler(authenticationFailureHandler()).permitAll()
-				.successHandler(authenticationSuccessHandler()).and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-				.deleteCookies("JSESSIONID").permitAll().and().rememberMe().userDetailsService(this.userDetailsService)
-				.key("uniqueAndSecret").tokenValiditySeconds(86400);
+		http.csrf().disable()
+		.authorizeRequests()
+		        .antMatchers("/", "/index", "/register", "/products/**").permitAll()
+				.antMatchers("/admin/**", "/category").hasRole("ADMIN").anyRequest().authenticated()
+				.and().formLogin()
+				.usernameParameter("userNameOrEmail").passwordParameter("password").loginPage("/login")
+				.failureHandler(authenticationFailureHandler()).permitAll()
+				.successHandler(authenticationSuccessHandler())
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+				.deleteCookies("JSESSIONID").permitAll();
 	}
 
 	@Override
