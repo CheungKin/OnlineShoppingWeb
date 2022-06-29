@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container px-4 px-lg-5">
 				<div class="nav-item">
-					<a th:href="@{/users/create}" class="btn btn-outline-secondary" role="button"> Create user </a>
+					<a th:href="@{/register}" class="btn btn-outline-secondary" role="button"> Create user </a>
 				</div>
 				<form class="d-flex" method="GET" th:action="@{/admin/user/search/}">
 					<input class="form-control me-2" type="text" name="name" placeholder="Search name or email" style='width: 200px' required>
