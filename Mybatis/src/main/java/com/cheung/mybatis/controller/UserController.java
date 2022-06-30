@@ -40,13 +40,14 @@ public class UserController {
 	}
 
 	@PostMapping("/update/{userId}")
-	public String update(@ModelAttribute("user") User user, @RequestParam("password")String password, HttpSession session, ModelMap map) {
+	public String update(@ModelAttribute("user") User user, HttpSession session, ModelMap map) {
+		if(user.getPassword()!=null) {
 		BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = bcryptPasswordEncoder.encode(password);
+		String encodedPassword = bcryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
+		}
 		userRepository.update(user);
 			return "redirect:/";
-		
 	}
 
 }

@@ -41,24 +41,29 @@
 									<label for="userName" class="col-lg-3 col-form-label form-control-label">User name:</label>
 									<div class="col-lg-9">
 										<input type="text" id="userName" name="userName" class="form-control" th:field="*{userName}" required>
+										<br>
 									</div>
 								</div>
-								<br>
-								<div class="form-group row">
+
+								<div class="form-group row" th:if="${session.userName == user.userName}">
 									<label for="password" class="col-lg-3 col-form-label form-control-label">Password:</label>
 									<div class="col-lg-9">
 										<input type="password" id="password" name="password" class="form-control" onkeyup="validatePassword()" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 											title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+										<br>
 									</div>
+
 								</div>
-								<br>
-								<div class="form-group row">
+
+								<div class="form-group row" th:if="${session.userName == user.userName}">
 									<label for="pwd" class="col-lg-3 col-form-label form-control-label">Confirm password:</label>
 									<div class="col-lg-9">
 										<input type="password" id="confirm_password" name="confirm_password" class="form-control" onkeyup="validatePassword()" required>
+										<br>
 									</div>
+
 								</div>
-								<br>
+
 								<div class="form-group row">
 									<label for="gender" class="col-lg-3 col-form-label form-control-label">Gender:</label>
 									<div class="col-lg-9">
@@ -66,16 +71,19 @@
 											<option th:selected="${user.gender == 'male'}" th:value="'male'">male</option>
 											<option th:selected="${user.gender == 'female'}" th:value="'female'">female</option>
 										</select>
+										<br>
 									</div>
+
 								</div>
-								<br>
+
 								<div class="form-group row">
 									<label for="email" class="col-lg-3 col-form-label form-control-label">Email:</label>
 									<div class="col-lg-9">
 										<input type="email" id="email" name="email" class="form-control" th:field="*{email}" required>
+										<br>
 									</div>
 								</div>
-								<br>
+
 								<div class="form-group row" sec:authorize="hasRole('ROLE_ADMIN')">
 									<label for="role" class="col-lg-3 col-form-label form-control-label">Role:</label>
 									<div class="col-lg-9">
@@ -83,9 +91,10 @@
 											<option th:selected="*{role == 'ROLE_ADMIN'}" th:value="ROLE_ADMIN">Admin</option>
 											<option th:selected="*{role == 'ROLE_USER'}" th:value="ROLE_USER">User</option>
 										</select>
+										<br>
 									</div>
 								</div>
-								<br>
+
 								<div class="row">
 									<div class="col text-center">
 										<input type="submit" class="btn btn-outline-secondary" value="Update" />
