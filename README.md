@@ -9,8 +9,16 @@ An online shopping website demo made by:<br>
 * [Regristration](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#registration)
 * [Login](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
 * [User Role](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
-* [Navigation Bar]
+* [User Role with different navigation bar]
 * [Update self information]
+* [Product detail & comment]
+* [Category design]
+* [Search]
+* [Sold out]
+* [Carts]
+* [Order(s)]
+* [Error page]
+* [Database]
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
@@ -27,11 +35,9 @@ Fill in `user name` or `email` and `password` for login.<br>
 When the user is not existing or fill in a wrong password, it returns an error.<br>
 ![login_fail](https://i.imgur.com/oG2wiR2.png)
 
-# User Role
+# User Role with different navigation bar
 Each user includes a role in either `ROLE_ADMIN` or `ROLE_USER`.<br>
-![User_Role](https://i.imgur.com/E4MWurM.png)
-
-# Navigation Bar
+![User_Role](https://i.imgur.com/E4MWurM.png)<br>
 Each role has a corresponding navigation bar:<br>
 * User:<br>
 ![ROLE_USER](https://i.imgur.com/MHg1mov.png)<br>
@@ -40,9 +46,7 @@ Each role has a corresponding navigation bar:<br>
 
 # Update self information
 User can update his information including password, gender and email.<br>
-![update_user](https://i.imgur.com/0Z7JcW2.png)
-
-# Address
+![update_user](https://i.imgur.com/0Z7JcW2.png)<br>
 Each user allows having multiple addresses and sets one address as a default address.<br>
 ![address](https://i.imgur.com/5a629SS.png)<br>
 ## Adding new address
@@ -56,7 +60,7 @@ After you bought those product(s), you can write comment(s)<br>
 Other user cannot add comment<br>
 ![other_user](https://i.imgur.com/l1ZVHgo.png)
 
-# Category
+# Category design
 There are three levels of categories<br>
 ![Category1](https://i.imgur.com/YBkdiQO.png)<br>
 ![Category2](https://i.imgur.com/bC4f6Sy.png)<br>
