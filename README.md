@@ -6,6 +6,7 @@ An online shopping website demo made by:<br>
 * Template engine : thymeleaf<br>
 * Data Serialization Language : YAML
 ## Function:
+* [Regristration](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#registration)
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
