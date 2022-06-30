@@ -32,14 +32,28 @@ Each role has a corresponding navigation bar:<br>
 * Admin:<br>
 ![ROLE_ADMIN](https://i.imgur.com/ae3DLgu.png)
 
-# Product(s)
-![product_detail](https://i.imgur.com/qLGUv7k.png)
+# Update self information
+User can update his information including password, gender and email.<br>
+
+# Address
+Each user allows having multiple addresses.<br>
+![address](https://i.imgur.com/5a629SS.png)<br>
+## Adding new address
+![new_address](https://i.imgur.com/TqZukah.png)
+
+# Product detail & comment
+When you click a picture of product, it enters a detailed product page.<br>
+![product_detail](https://i.imgur.com/qLGUv7k.png)<br>
+After you bought those product(s), you can write comment(s)<br>
+![comment](https://i.imgur.com/0r3Abx2.png)
 
 # Category
-![Category1](https://i.imgur.com/YBkdiQO.png)
+There are three levels of categories<br>
+![Category1](https://i.imgur.com/YBkdiQO.png)<br>
+![Category2](https://i.imgur.com/bC4f6Sy.png)<br>
+![Category3](https://i.imgur.com/NFpdLRp.png)<br>
+For example, click `CPU` category<br>
 ![Category_CPU](https://i.imgur.com/UmIRMgi.png)
-![Category2](https://i.imgur.com/bC4f6Sy.png)
-![Category3](https://i.imgur.com/NFpdLRp.png)
 
 # Search
 Type the name of a product for searching.<br>
@@ -53,8 +67,6 @@ Return the product with the given product name.<br>
 
 # Order(s)
 
-# Comment
-
 # Page partition
 Using `pageHelper` for page partition<br>
 ### page 1:
@@ -65,7 +77,15 @@ Using `pageHelper` for page partition<br>
 # Adminstration
 When the user's role is `ROLE_ADMIN`:<br>
 ![admin_index](https://i.imgur.com/GZQAi2S.png)<br>
-## Porduct management
+## User management
+Click `update` or `delete` to manage user(s):<br>
+![user_list](https://i.imgur.com/HfbocBT.png)<br>
+### Upate user information
+
+![update_user](https://i.imgur.com/0Z7JcW2.png)
+### Searching user
+![search_user](https://i.imgur.com/M1cuJoZ.png)
+## Product management
 ![Create_product](https://i.imgur.com/3RKEcto.png)<br>
 ![Update_product](https://i.imgur.com/gUetNyr.png)<br>
 
