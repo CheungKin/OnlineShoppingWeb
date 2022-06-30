@@ -7,6 +7,10 @@ An online shopping website demo made by:<br>
 * Data Serialization Language : YAML
 ## Function:
 * [Regristration](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#registration)
+* [Login](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
+* [User Role](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
+* [Navigation Bar]
+* [Update self information]
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
