@@ -4,37 +4,88 @@ An online shopping website demo made by:<br>
 * Java framework : Spring boot<br>
 * Java Persistence framework : Mybatis<br>
 * Template engine : thymeleaf<br>
+* Data Serialization Language : YAML
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
 
+# Registration
+Click `Sign up` bottom on the naviagtion bar to register an account.<br>
+![register](https://i.imgur.com/OBk3YDG.png)<br>
+Fill in user's information & address. (Password with pattern)<br>
+![pattern](https://i.imgur.com/7weWLII.png)
+
+# Login
+Fill in `user name` or `email` and `password` for login.<br>
+![login](https://i.imgur.com/qPo8fGd.png)<br>
+When the user is not existing or fill in a wrong password, it returns an error.<br>
+![login_fail](https://i.imgur.com/oG2wiR2.png)
+
 # User Role
-The user role includes either ROLE_ADMIN or ROLE_USER.
+Each user includes a role in either `ROLE_ADMIN` or `ROLE_USER`.<br>
 ![User_Role](https://i.imgur.com/E4MWurM.png)
 
 # Navigation Bar
 Each role has a corresponding navigation bar:<br>
 * User:<br>
-![ROLE_USER](https://i.imgur.com/MHg1mov.png)
+![ROLE_USER](https://i.imgur.com/MHg1mov.png)<br>
 * Admin:<br>
 ![ROLE_ADMIN](https://i.imgur.com/ae3DLgu.png)
 
-# Registration
-Click 'Sign up' bottom on the naviagtion bar to register an account.<br>
-![register](https://i.imgur.com/OBk3YDG.png)
-Fill in user's information & address. (Password with pattern)
-![pattern](https://i.imgur.com/7weWLII.png)
-
-# Login
-
 # Product(s)
+![product_detail](https://i.imgur.com/qLGUv7k.png)
+
+# Category
+![Category1](https://i.imgur.com/YBkdiQO.png)
+![Category_CPU](https://i.imgur.com/UmIRMgi.png)
+![Category2](https://i.imgur.com/bC4f6Sy.png)
+![Category3](https://i.imgur.com/NFpdLRp.png)
+
+# Search
+Type the name of a product for searching.<br>
+![Search1](https://i.imgur.com/32ZEp2b.png)<br>
+Return the product with the given product name.<br>
+![Search2](https://i.imgur.com/dJDHcIb.png)
+
+# Sold out
 
 # Cart(s)
 
 # Order(s)
 
+# Comment
+
 # Page partition
+Using `pageHelper` for page partition<br>
+### page 1:
+![page1](https://i.imgur.com/b8F0slZ.png)
+### page 2:
+![page2](https://i.imgur.com/OOup6sX.png)
 
 # Adminstration
+When the user's role is `ROLE_ADMIN`:<br>
+![admin_index](https://i.imgur.com/GZQAi2S.png)<br>
+## Porduct management
+![Create_product](https://i.imgur.com/3RKEcto.png)<br>
+![Update_product](https://i.imgur.com/gUetNyr.png)<br>
+
+# Error page
+If an error is happened, it redirects to the error page.<br>
+![error](https://i.imgur.com/heMPg1e.png)
 
 # Database
+Users<br>
+![Users](https://i.imgur.com/y6cvPj6.png)<br>
+Products<br>
+![Products](https://i.imgur.com/SyvIqUy.png)<br>
+Category<br>
+![Category](https://i.imgur.com/O7npxZO.png)<br>
+Cart<br>
+![Cart](https://i.imgur.com/LZe3LTx.png)<br>
+Orders<br>
+![Orders](https://i.imgur.com/kcWhYwv.png)<br>
+Order_detail<br>
+![Order_detail](https://i.imgur.com/kZNCfAB.png)<br>
+Comment<br>
+![Comment](https://i.imgur.com/KiWnnxA.png)
+
