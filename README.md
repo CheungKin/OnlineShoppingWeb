@@ -5,6 +5,7 @@ An online shopping website demo made by:<br>
 * Java Persistence framework : Mybatis<br>
 * Template engine : thymeleaf<br>
 * Data Serialization Language : YAML
+## Function:
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
@@ -34,9 +35,10 @@ Each role has a corresponding navigation bar:<br>
 
 # Update self information
 User can update his information including password, gender and email.<br>
+![update_user](https://i.imgur.com/0Z7JcW2.png)
 
 # Address
-Each user allows having multiple addresses.<br>
+Each user allows having multiple addresses and sets one address as a default address.<br>
 ![address](https://i.imgur.com/5a629SS.png)<br>
 ## Adding new address
 ![new_address](https://i.imgur.com/TqZukah.png)
@@ -45,7 +47,9 @@ Each user allows having multiple addresses.<br>
 When you click a picture of product, it enters a detailed product page.<br>
 ![product_detail](https://i.imgur.com/qLGUv7k.png)<br>
 After you bought those product(s), you can write comment(s)<br>
-![comment](https://i.imgur.com/0r3Abx2.png)
+![comment](https://i.imgur.com/0r3Abx2.png)<br>
+Other user cannot add comment<br>
+![other_user](https://i.imgur.com/l1ZVHgo.png)
 
 # Category
 There are three levels of categories<br>
@@ -62,10 +66,26 @@ Return the product with the given product name.<br>
 ![Search2](https://i.imgur.com/dJDHcIb.png)
 
 # Sold out
+If the stock of product is 0, it means that product is out-of-stock.<br>
+![sold_out1](https://i.imgur.com/YlA7W6D.png)
+![sold_out2](https://i.imgur.com/r99pLXS.png)
 
 # Cart(s)
+Users can add product(s) to their cart<br>
+![cart1](https://i.imgur.com/vunQRlQ.png)<br>
+If the cart is empty:<br>
+![empty_cart](https://i.imgur.com/BgUhpH5.png)
 
 # Order(s)
+After clicking `check out` or `buy it` buttom, it redircts to confirm page.<br>
+To confirm your destination and delivery time.<br>
+![order_comfirm](https://i.imgur.com/QsNV7CG.png)
+Then, user can view his order with its `status`<br>
+![order_detail](https://i.imgur.com/oTHwDDH.png)<br>
+![order_detail2](https://i.imgur.com/aKMBovx.png)<br>
+Adminstrator can change order's `status`.<br>
+![order_id](https://i.imgur.com/zElTamV.png)<br>
+![order_detail3](https://i.imgur.com/8ph4PPw.png)
 
 # Page partition
 Using `pageHelper` for page partition<br>
@@ -81,12 +101,14 @@ When the user's role is `ROLE_ADMIN`:<br>
 Click `update` or `delete` to manage user(s):<br>
 ![user_list](https://i.imgur.com/HfbocBT.png)<br>
 ### Upate user information
-
-![update_user](https://i.imgur.com/0Z7JcW2.png)
+Adminstrator can change user's role and other information, but only that user can change the password himself.
+![admin_user_role](https://i.imgur.com/SX9yDkZ.png)
 ### Searching user
 ![search_user](https://i.imgur.com/M1cuJoZ.png)
 ## Product management
+Adminstrator can add or update product and set its category
 ![Create_product](https://i.imgur.com/3RKEcto.png)<br>
+![Create_product2](https://i.imgur.com/SavkoaR.png)<br>
 ![Update_product](https://i.imgur.com/gUetNyr.png)<br>
 
 # Error page
