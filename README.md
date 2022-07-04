@@ -5,20 +5,6 @@ An online shopping website demo made by:<br>
 * Java Persistence framework : Mybatis<br>
 * Template engine : thymeleaf<br>
 * Data Serialization Language : YAML
-## Function:
-* [Regristration](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#registration)
-* [Login](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
-* [User Role](https://github.com/CheungKin/OnlineShoppingWeb/blob/main/README.md#login)
-* [User Role with different navigation bar]
-* [Update self information]
-* [Product detail & comment]
-* [Category design]
-* [Search]
-* [Sold out]
-* [Carts]
-* [Order(s)]
-* [Error page]
-* [Database]
 
 # Index
 ![Index](https://i.imgur.com/KO8HUEj.png)
