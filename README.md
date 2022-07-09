@@ -10,15 +10,15 @@ An online shopping website demo made by:<br>
 ![Index](https://i.imgur.com/KO8HUEj.png)
 
 # Registration
-Click `Sign up` bottom on the naviagtion bar to register an account.<br>
+Click `Sign up` bottom on the navigation bar to register an account.<br>
 ![register](https://i.imgur.com/OBk3YDG.png)<br>
-Fill in user's information & address. (Password with pattern)<br>
+Fill in the user's information & address. (Password with pattern)<br>
 ![pattern](https://i.imgur.com/7weWLII.png)
 
 # Login
-Fill in `user name` or `email` and `password` for login.<br>
+Fill in `username` or `email` and `password` for login.<br>
 ![login](https://i.imgur.com/qPo8fGd.png)<br>
-When the user is not existing or fill in a wrong password, it returns an error.<br>
+When the user does not exist or fill in a wrong password, it returns an error.<br>
 ![login_fail](https://i.imgur.com/oG2wiR2.png)
 
 # User Role with different navigation bar
@@ -39,7 +39,7 @@ Each user allows having multiple addresses and sets one address as a default add
 ![new_address](https://i.imgur.com/TqZukah.png)
 
 # Product detail & comment
-When you click a picture of product, it enters a detailed product page.<br>
+When you click a picture of a product, it enters a detailed product page.<br>
 ![product_detail](https://i.imgur.com/qLGUv7k.png)<br>
 After you bought those product(s), you can write comment(s)<br>
 ![comment](https://i.imgur.com/0r3Abx2.png)<br>
@@ -61,7 +61,7 @@ Return the product with the given product name.<br>
 ![Search2](https://i.imgur.com/dJDHcIb.png)
 
 # Sold out
-If the stock of product is 0, it means that product is out-of-stock.<br>
+If the stock of a product is 0, it means that the product is out-of-stock.<br>
 ![sold_out1](https://i.imgur.com/YlA7W6D.png)
 ![sold_out2](https://i.imgur.com/r99pLXS.png)
 
@@ -72,13 +72,13 @@ If the cart is empty:<br>
 ![empty_cart](https://i.imgur.com/BgUhpH5.png)
 
 # Order(s)
-After clicking `check out` or `buy it` buttom, it redircts to confirm page.<br>
+After clicking the `check out` or `buy it` button, it redirects to the confirm page.<br>
 To confirm your destination and delivery time.<br>
 ![order_comfirm](https://i.imgur.com/QsNV7CG.png)
 Then, user can view his order with its `status`<br>
 ![order_detail](https://i.imgur.com/oTHwDDH.png)<br>
 ![order_detail2](https://i.imgur.com/aKMBovx.png)<br>
-Adminstrator can change order's `status`.<br>
+Administrators can change the order's `status`.<br>
 ![order_id](https://i.imgur.com/zElTamV.png)<br>
 ![order_detail3](https://i.imgur.com/8ph4PPw.png)
 
@@ -95,19 +95,19 @@ When the user's role is `ROLE_ADMIN`:<br>
 ## User management
 Click `update` or `delete` to manage user(s):<br>
 ![user_list](https://i.imgur.com/HfbocBT.png)<br>
-### Upate user information
-Adminstrator can change user's role and other information, but only that user can change the password himself.
+### Update user information
+Administrators can change a user's role and other information, but only that user can change the password himself.
 ![admin_user_role](https://i.imgur.com/SX9yDkZ.png)
 ### Searching user
 ![search_user](https://i.imgur.com/M1cuJoZ.png)
 ## Product management
-Adminstrator can add or update product and set its category
+Administrators can add or update product and set its category
 ![Create_product](https://i.imgur.com/3RKEcto.png)<br>
 ![Create_product2](https://i.imgur.com/SavkoaR.png)<br>
 ![Update_product](https://i.imgur.com/gUetNyr.png)<br>
 
 # Error page
-If an error is happened, it redirects to the error page.<br>
+If an error happens, it redirects to the error page.<br>
 ![error](https://i.imgur.com/heMPg1e.png)
 
 # Database
