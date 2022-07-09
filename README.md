@@ -54,7 +54,7 @@ There are three levels of categories<br>
 For example, click `CPU` category<br>
 ![Category_CPU](https://i.imgur.com/UmIRMgi.png)
 
-# Search
+# Searching
 Type the name of a product for searching.<br>
 ![Search1](https://i.imgur.com/32ZEp2b.png)<br>
 Return the product with the given product name.<br>
