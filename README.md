@@ -89,7 +89,7 @@ Using `pageHelper` for page partition<br>
 ### page 2:
 ![page2](https://i.imgur.com/OOup6sX.png)
 
-# Adminstration
+# Administration
 When the user's role is `ROLE_ADMIN`:<br>
 ![admin_index](https://i.imgur.com/GZQAi2S.png)<br>
 ## User management
