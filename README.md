@@ -66,7 +66,7 @@ If the stock of a product is 0, it means that the product is out-of-stock.<br>
 ![sold_out2](https://i.imgur.com/r99pLXS.png)
 
 # Cart(s)
-Users can add product(s) to their cart<br>
+Users can add product(s) or modify quantity to their cart<br>
 ![cart1](https://i.imgur.com/vunQRlQ.png)<br>
 If the cart is empty:<br>
 ![empty_cart](https://i.imgur.com/BgUhpH5.png)
