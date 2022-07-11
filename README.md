@@ -10,7 +10,7 @@ An online shopping website demo made by:<br>
 ![Index](https://i.imgur.com/KO8HUEj.png)
 
 # Registration
-Click `Sign up` bottom on the navigation bar to register an account.<br>
+Clicking the `Sign up` botton on the navigation bar to register an account.<br>
 ![register](https://i.imgur.com/OBk3YDG.png)<br>
 Fill in the user's information & address. (Password with pattern)<br>
 ![pattern](https://i.imgur.com/7weWLII.png)
