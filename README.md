@@ -31,7 +31,7 @@ Each role has a corresponding navigation bar:<br>
 ![ROLE_ADMIN](https://i.imgur.com/ae3DLgu.png)
 
 # Update self information
-User can update his information including password, gender and email.<br>
+Users can update his information including password, gender and email.<br>
 ![update_user](https://i.imgur.com/0Z7JcW2.png)<br>
 Each user allows having multiple addresses and sets one address as a default address.<br>
 ![address](https://i.imgur.com/5a629SS.png)<br>
