@@ -39,9 +39,9 @@ Each user allows having multiple addresses and sets one address as a default add
 ![new_address](https://i.imgur.com/TqZukah.png)
 
 # Product detail & comment
-When you click a picture of a product, it enters a detailed product page.<br>
+When users click a picture of a product, it enters a detailed product page.<br>
 ![product_detail](https://i.imgur.com/qLGUv7k.png)<br>
-After you bought those product(s), you can write comment(s)<br>
+After user bought those product(s), user can write comment(s)<br>
 ![comment](https://i.imgur.com/0r3Abx2.png)<br>
 Other user cannot add comment<br>
 ![other_user](https://i.imgur.com/l1ZVHgo.png)
