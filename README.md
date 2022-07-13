@@ -2,6 +2,7 @@
 
 An online shopping website demo made by:<br>
 * Java framework : Spring boot<br>
+* Front-end : HTML5, CSS(Bootstrap), Javascript(JQuery, Ajax)
 * Java Persistence framework : Mybatis<br>
 * Template engine : thymeleaf<br>
 * Data Serialization Language : YAML
