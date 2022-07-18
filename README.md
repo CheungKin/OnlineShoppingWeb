@@ -74,7 +74,7 @@ If the cart is empty:<br>
 
 # Order(s)
 After clicking the `check out` or `buy it` button, it redirects to the confirm page.<br>
-To confirm your destination and delivery time.<br>
+To confirm the user's destination and delivery time.<br>
 ![order_comfirm](https://i.imgur.com/QsNV7CG.png)
 Then, user can view his order with its `status`<br>
 ![order_detail](https://i.imgur.com/oTHwDDH.png)<br>
