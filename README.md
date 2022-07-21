@@ -112,18 +112,5 @@ If an error happens, it redirects to the error page.<br>
 ![error](https://i.imgur.com/heMPg1e.png)
 
 # Database
-Users<br>
-![Users](https://i.imgur.com/y6cvPj6.png)<br>
-Products<br>
-![Products](https://i.imgur.com/SyvIqUy.png)<br>
-Category<br>
-![Category](https://i.imgur.com/O7npxZO.png)<br>
-Cart<br>
-![Cart](https://i.imgur.com/LZe3LTx.png)<br>
-Orders<br>
-![Orders](https://i.imgur.com/kcWhYwv.png)<br>
-Order_detail<br>
-![Order_detail](https://i.imgur.com/kZNCfAB.png)<br>
-Comment<br>
-![Comment](https://i.imgur.com/KiWnnxA.png)
+![database](https://i.imgur.com/eeL7F9r.png)
 
